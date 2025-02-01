@@ -1,0 +1,5 @@
+site_name: Documentation de Senior Love
+theme:
+  name: material
+nav:
+-Home: index.md
