@@ -1,0 +1,32 @@
+{
+  "name": "seniorlove-back",
+  "version": "1.0.0",
+  "description": "Serveur de l'application Senior Love",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmineNRA/SeniorLove-back.git"
+  },
+  "author": "AmineNRA",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AmineNRA/SeniorLove-back/issues"
+  },
+  "homepage": "https://github.com/AmineNRA/SeniorLove-back#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "nodejs": "^0.0.0",
+    "pg": "^8.13.1",
+    "sequelize": "^6.37.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
