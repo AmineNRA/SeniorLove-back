@@ -39,7 +39,7 @@ APPARTIENT1, 11 MESSAGE, 1N CONVERSATION
 MATCH: id, user_id_1, user_id_2, status, created_at
 ```
 
-[link](../public/MCD.svg)
+[link](public/MCD.svg)
 
 MLD
 

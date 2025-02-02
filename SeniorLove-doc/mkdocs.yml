@@ -2,5 +2,5 @@ site_name: Documentation de Senior Love
 theme:
   name: material
 nav:
--Home: index.md
--BDD: bdd.md
+  - Home: index.md
+  - BDD: bdd.md
