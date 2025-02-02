@@ -14,6 +14,8 @@ app.get('/', (req, res) => {
 
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static("public"));
+
 // Middleware pour lire du json
 app.use(express.json())
 

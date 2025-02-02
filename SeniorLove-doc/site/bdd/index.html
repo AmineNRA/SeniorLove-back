@@ -279,6 +279,7 @@
 <th style="text-align: center;">conversation</th>
 <th style="text-align: center;">message</th>
 <th style="text-align: right;">match</th>
+<th style="text-align: center;">interest</th>
 </tr>
 </thead>
 <tbody>
@@ -289,6 +290,7 @@
 <td style="text-align: center;">created_at</td>
 <td style="text-align: center;">content</td>
 <td style="text-align: right;">status</td>
+<td style="text-align: center;">name</td>
 </tr>
 <tr>
 <td style="text-align: center;">password</td>
@@ -297,6 +299,7 @@
 <td style="text-align: center;"></td>
 <td style="text-align: center;">created_at</td>
 <td style="text-align: right;">created_at</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;">created_at</td>
@@ -305,6 +308,7 @@
 <td style="text-align: center;"></td>
 <td style="text-align: center;">change_at</td>
 <td style="text-align: right;">deleted_at</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;">disabled_at</td>
@@ -313,6 +317,7 @@
 <td style="text-align: center;"></td>
 <td style="text-align: center;">deleted_at</td>
 <td style="text-align: right;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;">deleted_at</td>
@@ -321,6 +326,7 @@
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: right;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;">verified_at</td>
@@ -329,30 +335,34 @@
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: right;"></td>
-</tr>
-<tr>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">interests</td>
-<td style="text-align: center;">city</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: right;"></td>
 </tr>
 <tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">profile_image</td>
-<td style="text-align: center;">postal_code</td>
+<td style="text-align: center;">city</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: right;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">last_online</td>
+<td style="text-align: center;">postal_code</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">thumbnail_image</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: right;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;"></td>
@@ -361,6 +371,7 @@
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: right;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;"></td>
@@ -369,6 +380,7 @@
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: right;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;"></td>
@@ -377,25 +389,28 @@
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: right;"></td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
 <p>MCD</p>
 <p>Le MCD a été créer sur mocodo online :</p>
-<pre><code class="language-bash">PROFIL:id, pseudo, age, gender, looking_for, city, description, interests, profile_image, last_online
-RESERVER, 1N USER, 1N EVENT
-APPARTIENT, 11 USER, 11 PROFIL
-APPARTIENT3, 01 USER, 11 CONVERSATION : user_id_2
+<pre><code class="language-bash">RESERVER, 1N USER, 1N EVENT
 EVENT: id, title, tag, description, date, time, street, city, postal_code, thumbnail_image, full_image, max_participant, status
-CREER2, 11 USER, 11 EVENT
-USER: id, mail, password, created_at, disabled_at, deleted_at, verified_at
-APPARTIENT2, 01 USER, 11 CONVERSATION : user_id_1
+INTEREST: id, name
+AVOIR, 0N PROFIL, 0N INTEREST
 CONVERSATION: id, created_at, user_id_1, user_id_2
-APPARTIENT4, 0N USER, 11 MATCH : user_id_2
-CREER1, 0N USER, 11 MATCH : user_id_1
-CREER, 11 USER, 11 MESSAGE
-MESSAGE: id, content, created_at, change_at, deleted_at
+APPARTIENT3, 01 USER, 11 CONVERSATION : user_id_2
+CREER2, 11 USER, 11 EVENT
+APPARTIENT, 11 USER, 11 PROFIL
+PROFIL:id, pseudo, age, gender, looking_for, city, description, interests, profile_image, last_online
 APPARTIENT1, 11 MESSAGE, 1N CONVERSATION
+APPARTIENT2, 01 USER, 11 CONVERSATION : user_id_1
+USER: id, mail, password, created_at, disabled_at, deleted_at, verified_at
+CREER1, 0N USER, 11 MATCH : user_id_1
+MESSAGE: id, content, created_at, change_at, deleted_at
+CREER, 11 USER, 11 MESSAGE
+APPARTIENT4, 0N USER, 11 MATCH : user_id_2
 MATCH: id, user_id_1, user_id_2, status, created_at
 </code></pre>
 <p><a href="../public/MCD.svg">link</a></p>
@@ -404,16 +419,20 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <thead>
 <tr>
 <th style="text-align: center;">user</th>
-<th style="text-align: center;">profil</th>
+<th style="text-align: center;">profile</th>
 <th style="text-align: center;">event</th>
 <th style="text-align: center;">conversation</th>
 <th style="text-align: center;">message</th>
 <th style="text-align: center;">match</th>
 <th style="text-align: center;">reservation</th>
+<th style="text-align: center;">interest</th>
+<th style="text-align: center;">profile_interest</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td style="text-align: center;">id</td>
+<td style="text-align: center;">id</td>
 <td style="text-align: center;">id</td>
 <td style="text-align: center;">id</td>
 <td style="text-align: center;">id</td>
@@ -430,6 +449,8 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <td style="text-align: center;">content</td>
 <td style="text-align: center;">status</td>
 <td style="text-align: center;">#user_id</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">#profile_id</td>
 </tr>
 <tr>
 <td style="text-align: center;">password</td>
@@ -439,6 +460,8 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <td style="text-align: center;">created_at</td>
 <td style="text-align: center;">created_at</td>
 <td style="text-align: center;">#event_id</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">#interest_id</td>
 </tr>
 <tr>
 <td style="text-align: center;">created_at</td>
@@ -447,6 +470,8 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <td style="text-align: center;">#user_id_2</td>
 <td style="text-align: center;">updated_at</td>
 <td style="text-align: center;">deleted_at</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
@@ -457,6 +482,8 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <td style="text-align: center;">status</td>
 <td style="text-align: center;">#user_id_1</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;">deleted_at</td>
@@ -465,6 +492,8 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <td style="text-align: center;"></td>
 <td style="text-align: center;">#conversation_id</td>
 <td style="text-align: center;">#user_id_2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
@@ -475,20 +504,15 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <td style="text-align: center;">#user_id</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">interests</td>
-<td style="text-align: center;">city</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">profile_image</td>
-<td style="text-align: center;">postal_code</td>
+<td style="text-align: center;">city</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -497,7 +521,9 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">last_online</td>
-<td style="text-align: center;">thumbnail_image</td>
+<td style="text-align: center;">postal_code</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -506,7 +532,20 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">#user_id</td>
+<td style="text-align: center;">thumbnail_image</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">full_image</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -520,6 +559,8 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;"></td>
@@ -529,11 +570,15 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">#user_id</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -547,12 +592,14 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <li>Enumération de event : scheduled, finished</li>
 <li>Enumération de message : unread, read, deleted</li>
 </ul>
-<p>La table reservation est la table de liaison entre user et event.</p>
+<p>La table reservation est la table de liaison entre user et event.
+La table profile_interest et la table de liaison entre profile et interest.</p>
 <p>L'id ( clé primaire ) pour plusieurs tables seront concaténés avec deux ids dans leur table pour garder une unicité des données :</p>
 <ol>
 <li>Conversation qui sera la concaténation de #user_id_1 et #user_id_2</li>
 <li>Match qui sera la concaténation de #user_id_1 et #user_id_2</li>
 <li>Reservation qui sera la concatenation de #user_id et #event_id</li>
+<li>profile_interest qui sera la concaténation de #profile_id et #interest_id</li>
 </ol>
 
 
