@@ -1,6 +1,6 @@
-import { Model, Datatypes } from "sequelize";
+import { Model, DataTypes } from 'sequelize';
 import sequelize from "../config/database.js";
-import DOMPurify from "dompurify";
+import DOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom';
 import User from "./User.js";
 
@@ -10,7 +10,7 @@ class Event extends Model { };
 
 Event.init({
     title: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
             notEmpty: {
@@ -19,10 +19,10 @@ Event.init({
         }
     },
     tag: {
-        type: Datatypes.ENUM("Sortie", "Activité", "Atelier", "Rencontre", "Soirée")
+        type: DataTypes.ENUM("Sortie", "Activité", "Atelier", "Rencontre", "Soirée")
     },
     description: {
-        type: Datatypes.TEXT,
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
             max: {
@@ -32,23 +32,23 @@ Event.init({
         }
     },
     date: {
-        type: Datatypes.DATEONLY,
+        type: DataTypes.DATEONLY,
         allowNull: false
     },
     time: {
-        type: Datatypes.TIME,
+        type: DataTypes.TIME,
         allowNull: false
     },
     street: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     city: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     postalCode: {
-        type: Datatypes.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
             min: 5,
@@ -56,19 +56,19 @@ Event.init({
         }
     },
     thumbnail_image: {
-        type: Datatypes.TEXT,
+        type: DataTypes.TEXT,
         allowNull: false
     },
     full_image: {
-        type: Datatypes.TEXT,
+        type: DataTypes.TEXT,
         allowNull: false
     },
     maxParticipant: {
-        type: Datatypes.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     status: {
-        type: Datatypes.ENUM('scheduled', 'finished'),
+        type: DataTypes.ENUM('scheduled', 'finished'),
         defaultValue: 'scheduled'
     }
 },
@@ -83,8 +83,5 @@ Event.beforeValidate(async (event) => {
     event.description = dompurify.sanitize(event.description)
     0
 });
-
-Event.belongsTo(User);
-Event.belongsToMany(User, { through: 'Reservation' })
 
 export default Event;

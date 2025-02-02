@@ -1,6 +1,6 @@
-import { Model, Datatypes } from "sequelize";
+import { Model, DataTypes } from 'sequelize';
 import sequelize from "../config/database.js";
-import DOMPurify from "dompurify";
+import DOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom';
 import User from "./User.js";
 import Conversation from "./Conversation.js";
@@ -11,7 +11,7 @@ class Message extends Model { };
 
 Message.init({
     content: {
-        type: Datatypes.TEXT,
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
             notEmpty: {
@@ -20,7 +20,7 @@ Message.init({
         }
     },
     status: {
-        type: Datatypes.ENUM('unread', 'read', 'deleted'),
+        type: DataTypes.ENUM('unread', 'read', 'deleted'),
         defaultValue: 'unread'
     }
 },
@@ -35,8 +35,5 @@ Message.beforeValidate(async (message) => {
     message.description = dompurify.sanitize(message.content)
     0
 });
-
-Message.hasOne(User);
-Message.hasOne(Conversation);
 
 export default Message

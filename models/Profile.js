@@ -1,6 +1,6 @@
-import { Model, Datatypes } from "sequelize";
+import { Model, DataTypes } from 'sequelize';
 import sequelize from "../config/database.js";
-import DOMPurify from "dompurify";
+import DOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom';
 import User from "./User.js";
 import Interest from "./Interest.js";
@@ -11,7 +11,7 @@ class Profile extends Model { };
 
 Profile.init({
     pseudo: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
             notEmpty: {
@@ -28,16 +28,16 @@ Profile.init({
         }
     },
     birthdate: {
-        type: Datatypes.DATEONLY
+        type: DataTypes.DATEONLY
     },
     gender: {
-        type: Datatypes.ENUM('Homme', 'Femme', 'Non précisé')
+        type: DataTypes.ENUM('Homme', 'Femme', 'Non précisé')
     },
     lookingFor: {
-        type: Datatypes.ENUM('Homme', 'Femme', 'Amitié')
+        type: DataTypes.ENUM('Homme', 'Femme', 'Amitié')
     },
     city: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
             notNull: {
@@ -47,7 +47,7 @@ Profile.init({
         }
     },
     description: {
-        type: Datatypes.TEXT,
+        type: DataTypes.TEXT,
         allowNull: true,
         validate: {
             max: {
@@ -57,7 +57,7 @@ Profile.init({
         }
     },
     profile_image: {
-        type: Datatypes.TEXT,
+        type: DataTypes.TEXT,
         defaultValue: '/public/img/default-avatar.webp'
     }
 },
@@ -73,9 +73,5 @@ Profile.beforeValidate(async (profile) => {
         profile.description = dompurify.sanitize(profile.description)
     }
 })
-
-Profile.belongsTo(User);
-
-Profile.belongsToMany(Interest, { through: 'profile_interest' });
 
 export default Profile;

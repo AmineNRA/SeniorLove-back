@@ -1,4 +1,4 @@
-import { Model, Datatypes } from "sequelize";
+import { Model, DataTypes } from 'sequelize';
 import sequelize from "../config/database.js";
 import bcrypt from 'bcrypt';
 import Profile from './Profile.js';
@@ -11,7 +11,7 @@ class User extends Model { };
 
 User.init({
     mail: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         unique: true,
         validate: {
@@ -26,18 +26,18 @@ User.init({
         }
     },
     password: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
             notEmpty: true
         }
     },
     disabledAt: {
-        type: Datatypes.DATE,
+        type: DataTypes.DATE,
         allowNull: true
     },
     verifiedAt: {
-        type: Datatypes.DATE
+        type: DataTypes.DATE
     }
 },
     {
@@ -52,18 +52,5 @@ User.beforeCreate(async (user) => {
     const hash = await bcrypt.hash(user.password, 10)
     user.password = hash
 });
-
-User.hasOne(Profile);
-
-User.hasMany(Event);
-User.belongsToMany(Event, { through: 'Reservation' });
-
-User.hasMany(Conversation, { foreignKey: user_id_1 });
-User.hasMany(Conversation, { foreignKey: user_id_2 });
-
-User.belongsTo(Message);
-
-User.hasMany(Match, { foreignKey: user_id_1 });
-User.hasMany(Match, { foreignKey: user_id_2 });
 
 export default User;
