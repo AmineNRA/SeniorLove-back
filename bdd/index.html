@@ -219,6 +219,18 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    BDD
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -229,6 +241,61 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#liste-entite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Liste entité
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCD
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mld" class="md-nav__link">
+    <span class="md-ellipsis">
+      MLD
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoint-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoint API
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -254,6 +321,50 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#liste-entite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Liste entité
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCD
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mld" class="md-nav__link">
+    <span class="md-ellipsis">
+      MLD
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoint-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Endpoint API
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -269,132 +380,132 @@
 
 
 <h1 id="conceptualisation-base-de-donnee">Conceptualisation base de donnée</h1>
-<p>Liste entité</p>
+<h2 id="liste-entite">Liste entité</h2>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">user</th>
-<th style="text-align: center;">profile</th>
-<th style="text-align: center;">event</th>
-<th style="text-align: center;">conversation</th>
-<th style="text-align: center;">message</th>
-<th style="text-align: right;">match</th>
-<th style="text-align: center;">interest</th>
+<th>user</th>
+<th>profile</th>
+<th>event</th>
+<th>conversation</th>
+<th>message</th>
+<th>match</th>
+<th>interest</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">mail</td>
-<td style="text-align: center;">pseudo</td>
-<td style="text-align: center;">title</td>
-<td style="text-align: center;">created_at</td>
-<td style="text-align: center;">content</td>
-<td style="text-align: right;">status</td>
-<td style="text-align: center;">name</td>
+<td>mail</td>
+<td>pseudo</td>
+<td>title</td>
+<td>created_at</td>
+<td>content</td>
+<td>status</td>
+<td>name</td>
 </tr>
 <tr>
-<td style="text-align: center;">password</td>
-<td style="text-align: center;">age</td>
-<td style="text-align: center;">tags</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">created_at</td>
-<td style="text-align: right;">created_at</td>
-<td style="text-align: center;"></td>
+<td>password</td>
+<td>age</td>
+<td>tags</td>
+<td></td>
+<td>created_at</td>
+<td>created_at</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;">created_at</td>
-<td style="text-align: center;">gender</td>
-<td style="text-align: center;">description</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">change_at</td>
-<td style="text-align: right;">deleted_at</td>
-<td style="text-align: center;"></td>
+<td>created_at</td>
+<td>gender</td>
+<td>description</td>
+<td></td>
+<td>change_at</td>
+<td>deleted_at</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;">disabled_at</td>
-<td style="text-align: center;">looking_for</td>
-<td style="text-align: center;">date</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">deleted_at</td>
-<td style="text-align: right;"></td>
-<td style="text-align: center;"></td>
+<td>disabled_at</td>
+<td>looking_for</td>
+<td>date</td>
+<td></td>
+<td>deleted_at</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;">deleted_at</td>
-<td style="text-align: center;">city</td>
-<td style="text-align: center;">time</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: center;"></td>
+<td>deleted_at</td>
+<td>city</td>
+<td>time</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;">verified_at</td>
-<td style="text-align: center;">description</td>
-<td style="text-align: center;">street</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: center;"></td>
+<td>verified_at</td>
+<td>description</td>
+<td>street</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">profile_image</td>
-<td style="text-align: center;">city</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: center;"></td>
+<td></td>
+<td>profile_image</td>
+<td>city</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">last_online</td>
-<td style="text-align: center;">postal_code</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: center;"></td>
+<td></td>
+<td>last_online</td>
+<td>postal_code</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">thumbnail_image</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: center;"></td>
+<td></td>
+<td></td>
+<td>thumbnail_image</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">full_image</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: center;"></td>
+<td></td>
+<td></td>
+<td>full_image</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">max_participants</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: center;"></td>
+<td></td>
+<td></td>
+<td>max_participants</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">status</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: center;"></td>
+<td></td>
+<td></td>
+<td>status</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<p>MCD</p>
-<p>Le MCD a été créer sur mocodo online :</p>
+<h2 id="mcd">MCD</h2>
+<p><strong>Le MCD a été créer sur mocodo online :</strong></p>
 <pre><code class="language-bash">USER: id, mail, password, created_at, disabled_at, deleted_at, verified_at
 CREER1, 0N PROFILE, 11 MATCH : profile_id_1
 MESSAGE: id, content, created_at, change_at, deleted_at
@@ -413,180 +524,180 @@ CREER2, 0N PROFILE, 11 EVENT
 EVENT: id, title, tag, description, date, time, street, city, postal_code, thumbnail_image, full_image, max_participant, status
 INTEREST: id, name
 </code></pre>
-<p><a href="../public/MCD.svg">link</a></p>
-<p>MLD</p>
+<p><strong>Lien du schéma du mcd : <a href="../public/MCD.svg">link</a></strong></p>
+<h2 id="mld">MLD</h2>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">user</th>
-<th style="text-align: center;">profile</th>
-<th style="text-align: center;">event</th>
-<th style="text-align: center;">conversation</th>
-<th style="text-align: center;">message</th>
-<th style="text-align: center;">match</th>
-<th style="text-align: center;">reservation</th>
-<th style="text-align: center;">interest</th>
-<th style="text-align: center;">profile_interest</th>
+<th>user</th>
+<th>profile</th>
+<th>event</th>
+<th>conversation</th>
+<th>message</th>
+<th>match</th>
+<th>reservation</th>
+<th>interest</th>
+<th>profile_interest</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">id</td>
-<td style="text-align: center;">id</td>
-<td style="text-align: center;">id</td>
-<td style="text-align: center;">id</td>
-<td style="text-align: center;">id</td>
-<td style="text-align: center;">id</td>
-<td style="text-align: center;">id</td>
-<td style="text-align: center;">id</td>
-<td style="text-align: center;">id</td>
+<td>id</td>
+<td>id</td>
+<td>id</td>
+<td>id</td>
+<td>id</td>
+<td>id</td>
+<td>id</td>
+<td>id</td>
+<td>id</td>
 </tr>
 <tr>
-<td style="text-align: center;">mail</td>
-<td style="text-align: center;">pseudo</td>
-<td style="text-align: center;">title</td>
-<td style="text-align: center;">created_at</td>
-<td style="text-align: center;">content</td>
-<td style="text-align: center;">status</td>
-<td style="text-align: center;">#profile_id</td>
-<td style="text-align: center;">name</td>
-<td style="text-align: center;">#profile_id</td>
+<td>mail</td>
+<td>pseudo</td>
+<td>title</td>
+<td>created_at</td>
+<td>content</td>
+<td>status</td>
+<td>#profile_id</td>
+<td>name</td>
+<td>#profile_id</td>
 </tr>
 <tr>
-<td style="text-align: center;">password</td>
-<td style="text-align: center;">age</td>
-<td style="text-align: center;">tags</td>
-<td style="text-align: center;">#profile_id_1</td>
-<td style="text-align: center;">created_at</td>
-<td style="text-align: center;">created_at</td>
-<td style="text-align: center;">#event_id</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">#interest_id</td>
+<td>password</td>
+<td>age</td>
+<td>tags</td>
+<td>#profile_id_1</td>
+<td>created_at</td>
+<td>created_at</td>
+<td>#event_id</td>
+<td></td>
+<td>#interest_id</td>
 </tr>
 <tr>
-<td style="text-align: center;">created_at</td>
-<td style="text-align: center;">gender</td>
-<td style="text-align: center;">description</td>
-<td style="text-align: center;">#profile_id_2</td>
-<td style="text-align: center;">updated_at</td>
-<td style="text-align: center;">deleted_at</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td>created_at</td>
+<td>gender</td>
+<td>description</td>
+<td>#profile_id_2</td>
+<td>updated_at</td>
+<td>deleted_at</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;">disabled_at</td>
-<td style="text-align: center;">looking_for</td>
-<td style="text-align: center;">date</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">status</td>
-<td style="text-align: center;">#profile_id_1</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td>disabled_at</td>
+<td>looking_for</td>
+<td>date</td>
+<td></td>
+<td>status</td>
+<td>#profile_id_1</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;">deleted_at</td>
-<td style="text-align: center;">city</td>
-<td style="text-align: center;">time</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">#conversation_id</td>
-<td style="text-align: center;">#profile_id_2</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td>deleted_at</td>
+<td>city</td>
+<td>time</td>
+<td></td>
+<td>#conversation_id</td>
+<td>#profile_id_2</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;">verified_at</td>
-<td style="text-align: center;">description</td>
-<td style="text-align: center;">street</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">#profile_id</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td>verified_at</td>
+<td>description</td>
+<td>street</td>
+<td></td>
+<td>#profile_id</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;">#profile_id</td>
-<td style="text-align: center;">profile_image</td>
-<td style="text-align: center;">city</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td>#profile_id</td>
+<td>profile_image</td>
+<td>city</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">last_online</td>
-<td style="text-align: center;">postal_code</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td></td>
+<td>last_online</td>
+<td>postal_code</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">thumbnail_image</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td></td>
+<td></td>
+<td>thumbnail_image</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">full_image</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td></td>
+<td></td>
+<td>full_image</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">max_participants</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td></td>
+<td></td>
+<td>max_participants</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">status</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td></td>
+<td></td>
+<td>status</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">#profile_id</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td></td>
+<td></td>
+<td>#profile_id</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<p>Enumération des status des tables :</p>
+<p><strong>Enumération des status des tables :</strong></p>
 <ul>
 <li>Enumération de match : pending, accepted, rejected</li>
 <li>Enumération de event : scheduled, finished</li>
@@ -601,198 +712,198 @@ La table profile_interest et la table de liaison entre profile et interest.</p>
 <li>Reservation qui sera la concatenation de #profile_id et #event_id</li>
 <li>profile_interest qui sera la concaténation de #profile_id et #interest_id</li>
 </ol>
-<p>Endpoint API</p>
-<p>User:</p>
+<h2 id="endpoint-api">Endpoint API</h2>
+<p><strong>User:</strong></p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">Requête</th>
-<th style="text-align: center;">Méthode</th>
-<th style="text-align: center;">Explication</th>
+<th>Requête</th>
+<th>Méthode</th>
+<th>Explication</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">back.seniorlove/user/find</td>
-<td style="text-align: center;">GET</td>
-<td style="text-align: center;">Rechercher si l'utilisateur est connu au pas (grace à son mail)</td>
+<td>back.seniorlove/user/find</td>
+<td>GET</td>
+<td>Rechercher si l'utilisateur est connu au pas (grace à son mail)</td>
 </tr>
 <tr>
-<td style="text-align: center;">back.seniorlove/user</td>
-<td style="text-align: center;">POST</td>
-<td style="text-align: center;">Authentification de l'utilisateur</td>
+<td>back.seniorlove/user</td>
+<td>POST</td>
+<td>Authentification de l'utilisateur</td>
 </tr>
 <tr>
-<td style="text-align: center;">back.seniorlove/user/:id</td>
-<td style="text-align: center;">PATCH</td>
-<td style="text-align: center;">Modifier un user</td>
+<td>back.seniorlove/user/:id</td>
+<td>PATCH</td>
+<td>Modifier un user</td>
 </tr>
 <tr>
-<td style="text-align: center;">back.seniorlove/user/:id</td>
-<td style="text-align: center;">DELETE</td>
-<td style="text-align: center;">Supprime un user</td>
+<td>back.seniorlove/user/:id</td>
+<td>DELETE</td>
+<td>Supprime un user</td>
 </tr>
 </tbody>
 </table>
-<p>Profile:</p>
+<p><strong>Profile:</strong></p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">Requête</th>
-<th style="text-align: center;">Méthode</th>
-<th style="text-align: center;">Explication</th>
+<th>Requête</th>
+<th>Méthode</th>
+<th>Explication</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">back.seniorlove/profile/:id</td>
-<td style="text-align: center;">GET</td>
-<td style="text-align: center;">Envoi un profil</td>
+<td>back.seniorlove/profile/:id</td>
+<td>GET</td>
+<td>Envoi un profil</td>
 </tr>
 <tr>
-<td style="text-align: center;">back.seniorlove/profile?preference=preference</td>
-<td style="text-align: center;">GET</td>
-<td style="text-align: center;">Filtre profil</td>
+<td>back.seniorlove/profile?preference=preference</td>
+<td>GET</td>
+<td>Filtre profil</td>
 </tr>
 <tr>
-<td style="text-align: center;">back.seniorlove/profile/:id</td>
-<td style="text-align: center;">PATCH</td>
-<td style="text-align: center;">Modifie un profil</td>
+<td>back.seniorlove/profile/:id</td>
+<td>PATCH</td>
+<td>Modifie un profil</td>
 </tr>
 <tr>
-<td style="text-align: center;">back.seniorlove/profile</td>
-<td style="text-align: center;">DELETE</td>
-<td style="text-align: center;">Supprime un user</td>
+<td>back.seniorlove/profile</td>
+<td>DELETE</td>
+<td>Supprime un user</td>
 </tr>
 </tbody>
 </table>
-<p>Conversation:</p>
+<p><strong>Conversation:</strong></p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">Requête</th>
-<th style="text-align: center;">Méthode</th>
-<th style="text-align: center;">Explication</th>
+<th>Requête</th>
+<th>Méthode</th>
+<th>Explication</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">back.seniorlove/conversation/:profile_id</td>
-<td style="text-align: center;">GET</td>
-<td style="text-align: center;">Cherche la liste de conversations du user</td>
+<td>back.seniorlove/conversation/:profile_id</td>
+<td>GET</td>
+<td>Cherche la liste de conversations du user</td>
 </tr>
 <tr>
-<td style="text-align: center;">back.senior/love/conversation/:id</td>
-<td style="text-align: center;">DELETE</td>
-<td style="text-align: center;">Supprime une conversation</td>
+<td>back.senior/love/conversation/:id</td>
+<td>DELETE</td>
+<td>Supprime une conversation</td>
 </tr>
 </tbody>
 </table>
-<p>Message:</p>
+<p><strong>Message:</strong></p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">Requête</th>
-<th style="text-align: center;">Méthode</th>
-<th style="text-align: center;">Explication</th>
+<th>Requête</th>
+<th>Méthode</th>
+<th>Explication</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">back.seniorlove/message/:conversation_id</td>
-<td style="text-align: center;">GET</td>
-<td style="text-align: center;">Cherche tous les messages d'une conversation</td>
+<td>back.seniorlove/message/:conversation_id</td>
+<td>GET</td>
+<td>Cherche tous les messages d'une conversation</td>
 </tr>
 <tr>
-<td style="text-align: center;">back.seniorlove/message/:id</td>
-<td style="text-align: center;">PATCH</td>
-<td style="text-align: center;">Modifie un message</td>
+<td>back.seniorlove/message/:id</td>
+<td>PATCH</td>
+<td>Modifie un message</td>
 </tr>
 <tr>
-<td style="text-align: center;">back.seniorlove/message/:id</td>
-<td style="text-align: center;">DELETE</td>
-<td style="text-align: center;">Supprime un message</td>
+<td>back.seniorlove/message/:id</td>
+<td>DELETE</td>
+<td>Supprime un message</td>
 </tr>
 </tbody>
 </table>
-<p>Event:</p>
+<p><strong>Event:</strong></p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">Requête</th>
-<th style="text-align: center;">Méthode</th>
-<th style="text-align: center;">Explication</th>
+<th>Requête</th>
+<th>Méthode</th>
+<th>Explication</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">back.seniorlove/event</td>
-<td style="text-align: center;">GET</td>
-<td style="text-align: center;">Envoi la liste de tous les evenements</td>
+<td>back.seniorlove/event</td>
+<td>GET</td>
+<td>Envoi la liste de tous les evenements</td>
 </tr>
 <tr>
-<td style="text-align: center;">back.seniorlove/event/:id</td>
-<td style="text-align: center;">GET</td>
-<td style="text-align: center;">Envoi un evenement</td>
+<td>back.seniorlove/event/:id</td>
+<td>GET</td>
+<td>Envoi un evenement</td>
 </tr>
 <tr>
-<td style="text-align: center;">back.seniorlove/event</td>
-<td style="text-align: center;">PATCH</td>
-<td style="text-align: center;">Modifie un evenement</td>
+<td>back.seniorlove/event</td>
+<td>PATCH</td>
+<td>Modifie un evenement</td>
 </tr>
 <tr>
-<td style="text-align: center;">back.seniorlove/event/:id</td>
-<td style="text-align: center;">DELETE</td>
-<td style="text-align: center;">Supprime un evenement</td>
+<td>back.seniorlove/event/:id</td>
+<td>DELETE</td>
+<td>Supprime un evenement</td>
 </tr>
 </tbody>
 </table>
-<p>Reservation:</p>
+<p><strong>Reservation:</strong></p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">Requête</th>
-<th style="text-align: center;">Méthode</th>
-<th style="text-align: center;">Explication</th>
+<th>Requête</th>
+<th>Méthode</th>
+<th>Explication</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">back.seniorlove/reservation</td>
-<td style="text-align: center;">POST</td>
-<td style="text-align: center;">Créer une réservation</td>
+<td>back.seniorlove/reservation</td>
+<td>POST</td>
+<td>Créer une réservation</td>
 </tr>
 <tr>
-<td style="text-align: center;">back.seniorlove/reservation/:id</td>
-<td style="text-align: center;">DELETE</td>
-<td style="text-align: center;">Supprime une réservation</td>
+<td>back.seniorlove/reservation/:id</td>
+<td>DELETE</td>
+<td>Supprime une réservation</td>
 </tr>
 </tbody>
 </table>
-<p>Match:</p>
+<p><strong>Match:</strong></p>
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">Requête</th>
-<th style="text-align: center;">Méthode</th>
-<th style="text-align: center;">Explication</th>
+<th>Requête</th>
+<th>Méthode</th>
+<th>Explication</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">back.seniorlove/match/:id</td>
-<td style="text-align: center;">GET</td>
-<td style="text-align: center;">Trouve les match</td>
+<td>back.seniorlove/match/:id</td>
+<td>GET</td>
+<td>Trouve les match</td>
 </tr>
 <tr>
-<td style="text-align: center;">back.seniorlove/match/:id</td>
-<td style="text-align: center;">GET</td>
-<td style="text-align: center;">Créer un match</td>
+<td>back.seniorlove/match/:id</td>
+<td>GET</td>
+<td>Créer un match</td>
 </tr>
 <tr>
-<td style="text-align: center;">back.seniorlove/match/:id</td>
-<td style="text-align: center;">DELETE</td>
-<td style="text-align: center;">Supprime un match</td>
+<td>back.seniorlove/match/:id</td>
+<td>DELETE</td>
+<td>Supprime un match</td>
 </tr>
 </tbody>
 </table>
