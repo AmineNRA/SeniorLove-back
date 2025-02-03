@@ -2,7 +2,6 @@ import { Model, DataTypes } from 'sequelize';
 import sequelize from "../config/database.js";
 import DOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom';
-import User from "./User.js";
 
 const dompurify = DOMPurify(new JSDOM('').window)
 
@@ -36,7 +35,7 @@ Event.init({
         allowNull: false
     },
     time: {
-        type: DataTypes.TIME,
+        type: DataTypes.STRING,
         allowNull: false
     },
     street: {
@@ -47,12 +46,11 @@ Event.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    postalCode: {
+    postal_code: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-            min: 5,
-            max: 5
+            min: 5
         }
     },
     thumbnail_image: {
@@ -63,7 +61,7 @@ Event.init({
         type: DataTypes.TEXT,
         allowNull: false
     },
-    maxParticipant: {
+    max_participant: {
         type: DataTypes.INTEGER,
         allowNull: false
     },

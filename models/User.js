@@ -1,18 +1,12 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from "../config/database.js";
 import bcrypt from 'bcrypt';
-import Profile from './Profile.js';
-import Event from "./Event.js";
-import Conversation from "./Conversation.js";
-import Message from "./Message.js";
-import Match from "./Match.js";
 
 class User extends Model { };
 
 User.init({
     mail: {
         type: DataTypes.STRING,
-        allowNull: false,
         unique: true,
         validate: {
             isEmail: {
@@ -32,11 +26,11 @@ User.init({
             notEmpty: true
         }
     },
-    disabledAt: {
+    disabled_at: {
         type: DataTypes.DATE,
         allowNull: true
     },
-    verifiedAt: {
+    verified_at: {
         type: DataTypes.DATE
     }
 },

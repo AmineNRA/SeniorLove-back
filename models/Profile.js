@@ -2,8 +2,6 @@ import { Model, DataTypes } from 'sequelize';
 import sequelize from "../config/database.js";
 import DOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom';
-import User from "./User.js";
-import Interest from "./Interest.js";
 
 const dompurify = DOMPurify(new JSDOM('').window)
 
@@ -20,21 +18,17 @@ Profile.init({
             len: {
                 args: [4, 16],
                 msg: "Le pseudo doit être compris entre 4 et 16 caractères"
-            },
-            isAlphanumeric: {
-                args: true,
-                msg: "Le pseudo ne peut contenir de caractère spécial "
             }
         }
     },
-    birthdate: {
-        type: DataTypes.DATEONLY
+    age: {
+        type: DataTypes.INTEGER
     },
     gender: {
         type: DataTypes.ENUM('Homme', 'Femme', 'Non précisé')
     },
-    lookingFor: {
-        type: DataTypes.ENUM('Homme', 'Femme', 'Amitié')
+    looking_for: {
+        type: DataTypes.ENUM('Homme', 'Femme', 'Amitié'),
     },
     city: {
         type: DataTypes.STRING,

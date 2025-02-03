@@ -2,8 +2,6 @@ import { Model, DataTypes } from 'sequelize';
 import sequelize from "../config/database.js";
 import DOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom';
-import User from "./User.js";
-import Conversation from "./Conversation.js";
 
 const dompurify = DOMPurify(new JSDOM('').window)
 

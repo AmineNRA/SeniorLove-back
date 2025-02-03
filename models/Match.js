@@ -1,6 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from "../config/database.js";
-import User from "./User.js";
 
 class Match extends Model { };
 
@@ -18,7 +17,7 @@ Match.init({
         indexes: [
             {
                 unique: true,
-                fields: ['user_id_1', 'user_id_2']
+                fields: ['profile_id_1', 'profile_id_2']
             }
         ]
     }

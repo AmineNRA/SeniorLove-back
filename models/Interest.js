@@ -1,7 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from "../config/database.js";
 
-
 class Interest extends Model { };
 
 Interest.init({
@@ -13,7 +12,7 @@ Interest.init({
         sequelize,
         timestamps: false,
         modelName: 'Interest',
-        tablename: 'Interest'
+        tablename: 'interest'
     }
 );
 
