@@ -274,7 +274,7 @@
 <thead>
 <tr>
 <th style="text-align: center;">user</th>
-<th style="text-align: center;">profil</th>
+<th style="text-align: center;">profile</th>
 <th style="text-align: center;">event</th>
 <th style="text-align: center;">conversation</th>
 <th style="text-align: center;">message</th>
@@ -395,23 +395,23 @@
 </table>
 <p>MCD</p>
 <p>Le MCD a été créer sur mocodo online :</p>
-<pre><code class="language-bash">RESERVER, 1N USER, 1N EVENT
+<pre><code class="language-bash">USER: id, mail, password, created_at, disabled_at, deleted_at, verified_at
+CREER1, 0N PROFILE, 11 MATCH : profile_id_1
+MESSAGE: id, content, created_at, change_at, deleted_at
+CREER, 11 PROFILE, 11 MESSAGE
+APPARTIENT, 11 USER, 11 PROFILE
+APPARTIENT4, 0N PROFILE, 11 MATCH : profile_id_2
+MATCH: id, profile_id_1, profile_id_2, status, created_at
+APPARTIENT1, 11 MESSAGE, 1N CONVERSATION
+CONVERSATION: id, created_at, profile_id_1, profile_id_2
+APPARTIENT3, 0N PROFILE, 11 CONVERSATION : profile_id_2
+PROFILE:id, pseudo, age, gender, looking_for, city, description, interests, profile_image, last_online
+RESERVER, 0N PROFILE, 1N EVENT
+APPARTIENT2, 0N PROFILE, 11 CONVERSATION : profile_id_1
+AVOIR, 0N PROFILE, 0N INTEREST
+CREER2, 0N PROFILE, 11 EVENT
 EVENT: id, title, tag, description, date, time, street, city, postal_code, thumbnail_image, full_image, max_participant, status
 INTEREST: id, name
-AVOIR, 0N PROFIL, 0N INTEREST
-CONVERSATION: id, created_at, user_id_1, user_id_2
-APPARTIENT3, 01 USER, 11 CONVERSATION : user_id_2
-CREER2, 11 USER, 11 EVENT
-APPARTIENT, 11 USER, 11 PROFIL
-PROFIL:id, pseudo, age, gender, looking_for, city, description, interests, profile_image, last_online
-APPARTIENT1, 11 MESSAGE, 1N CONVERSATION
-APPARTIENT2, 01 USER, 11 CONVERSATION : user_id_1
-USER: id, mail, password, created_at, disabled_at, deleted_at, verified_at
-CREER1, 0N USER, 11 MATCH : user_id_1
-MESSAGE: id, content, created_at, change_at, deleted_at
-CREER, 11 USER, 11 MESSAGE
-APPARTIENT4, 0N USER, 11 MATCH : user_id_2
-MATCH: id, user_id_1, user_id_2, status, created_at
 </code></pre>
 <p><a href="../public/MCD.svg">link</a></p>
 <p>MLD</p>
@@ -448,7 +448,7 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <td style="text-align: center;">created_at</td>
 <td style="text-align: center;">content</td>
 <td style="text-align: center;">status</td>
-<td style="text-align: center;">#user_id</td>
+<td style="text-align: center;">#profile_id</td>
 <td style="text-align: center;">name</td>
 <td style="text-align: center;">#profile_id</td>
 </tr>
@@ -456,7 +456,7 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <td style="text-align: center;">password</td>
 <td style="text-align: center;">age</td>
 <td style="text-align: center;">tags</td>
-<td style="text-align: center;">#user_id_1</td>
+<td style="text-align: center;">#profile_id_1</td>
 <td style="text-align: center;">created_at</td>
 <td style="text-align: center;">created_at</td>
 <td style="text-align: center;">#event_id</td>
@@ -467,7 +467,7 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <td style="text-align: center;">created_at</td>
 <td style="text-align: center;">gender</td>
 <td style="text-align: center;">description</td>
-<td style="text-align: center;">#user_id_2</td>
+<td style="text-align: center;">#profile_id_2</td>
 <td style="text-align: center;">updated_at</td>
 <td style="text-align: center;">deleted_at</td>
 <td style="text-align: center;"></td>
@@ -480,7 +480,7 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <td style="text-align: center;">date</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">status</td>
-<td style="text-align: center;">#user_id_1</td>
+<td style="text-align: center;">#profile_id_1</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -491,7 +491,7 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <td style="text-align: center;">time</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;">#conversation_id</td>
-<td style="text-align: center;">#user_id_2</td>
+<td style="text-align: center;">#profile_id_2</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -501,14 +501,14 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <td style="text-align: center;">description</td>
 <td style="text-align: center;">street</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">#user_id</td>
+<td style="text-align: center;">#profile_id</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">#profile_id</td>
 <td style="text-align: center;">profile_image</td>
 <td style="text-align: center;">city</td>
 <td style="text-align: center;"></td>
@@ -531,7 +531,7 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 </tr>
 <tr>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">#user_id</td>
+<td style="text-align: center;"></td>
 <td style="text-align: center;">thumbnail_image</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -576,7 +576,7 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 <tr>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">#user_id</td>
+<td style="text-align: center;">#profile_id</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -596,9 +596,9 @@ MATCH: id, user_id_1, user_id_2, status, created_at
 La table profile_interest et la table de liaison entre profile et interest.</p>
 <p>L'id ( clé primaire ) pour plusieurs tables seront concaténés avec deux ids dans leur table pour garder une unicité des données :</p>
 <ol>
-<li>Conversation qui sera la concaténation de #user_id_1 et #user_id_2</li>
-<li>Match qui sera la concaténation de #user_id_1 et #user_id_2</li>
-<li>Reservation qui sera la concatenation de #user_id et #event_id</li>
+<li>Conversation qui sera la concaténation de #profile_id_1 et #profile_id_2</li>
+<li>Match qui sera la concaténation de #profile_id_1 et #profile_id_2</li>
+<li>Reservation qui sera la concatenation de #profile_id et #event_id</li>
 <li>profile_interest qui sera la concaténation de #profile_id et #interest_id</li>
 </ol>
 
