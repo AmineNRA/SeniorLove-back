@@ -601,6 +601,201 @@ La table profile_interest et la table de liaison entre profile et interest.</p>
 <li>Reservation qui sera la concatenation de #profile_id et #event_id</li>
 <li>profile_interest qui sera la concaténation de #profile_id et #interest_id</li>
 </ol>
+<p>Endpoint API</p>
+<p>User:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Requête</th>
+<th style="text-align: center;">Méthode</th>
+<th style="text-align: center;">Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">back.seniorlove/user/find</td>
+<td style="text-align: center;">GET</td>
+<td style="text-align: center;">Rechercher si l'utilisateur est connu au pas (grace à son mail)</td>
+</tr>
+<tr>
+<td style="text-align: center;">back.seniorlove/user</td>
+<td style="text-align: center;">POST</td>
+<td style="text-align: center;">Authentification de l'utilisateur</td>
+</tr>
+<tr>
+<td style="text-align: center;">back.seniorlove/user/:id</td>
+<td style="text-align: center;">PATCH</td>
+<td style="text-align: center;">Modifier un user</td>
+</tr>
+<tr>
+<td style="text-align: center;">back.seniorlove/user/:id</td>
+<td style="text-align: center;">DELETE</td>
+<td style="text-align: center;">Supprime un user</td>
+</tr>
+</tbody>
+</table>
+<p>Profile:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Requête</th>
+<th style="text-align: center;">Méthode</th>
+<th style="text-align: center;">Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">back.seniorlove/profile/:id</td>
+<td style="text-align: center;">GET</td>
+<td style="text-align: center;">Envoi un profil</td>
+</tr>
+<tr>
+<td style="text-align: center;">back.seniorlove/profile?preference=preference</td>
+<td style="text-align: center;">GET</td>
+<td style="text-align: center;">Filtre profil</td>
+</tr>
+<tr>
+<td style="text-align: center;">back.seniorlove/profile/:id</td>
+<td style="text-align: center;">PATCH</td>
+<td style="text-align: center;">Modifie un profil</td>
+</tr>
+<tr>
+<td style="text-align: center;">back.seniorlove/profile</td>
+<td style="text-align: center;">DELETE</td>
+<td style="text-align: center;">Supprime un user</td>
+</tr>
+</tbody>
+</table>
+<p>Conversation:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Requête</th>
+<th style="text-align: center;">Méthode</th>
+<th style="text-align: center;">Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">back.seniorlove/conversation/:profile_id</td>
+<td style="text-align: center;">GET</td>
+<td style="text-align: center;">Cherche la liste de conversations du user</td>
+</tr>
+<tr>
+<td style="text-align: center;">back.senior/love/conversation/:id</td>
+<td style="text-align: center;">DELETE</td>
+<td style="text-align: center;">Supprime une conversation</td>
+</tr>
+</tbody>
+</table>
+<p>Message:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Requête</th>
+<th style="text-align: center;">Méthode</th>
+<th style="text-align: center;">Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">back.seniorlove/message/:conversation_id</td>
+<td style="text-align: center;">GET</td>
+<td style="text-align: center;">Cherche tous les messages d'une conversation</td>
+</tr>
+<tr>
+<td style="text-align: center;">back.seniorlove/message/:id</td>
+<td style="text-align: center;">PATCH</td>
+<td style="text-align: center;">Modifie un message</td>
+</tr>
+<tr>
+<td style="text-align: center;">back.seniorlove/message/:id</td>
+<td style="text-align: center;">DELETE</td>
+<td style="text-align: center;">Supprime un message</td>
+</tr>
+</tbody>
+</table>
+<p>Event:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Requête</th>
+<th style="text-align: center;">Méthode</th>
+<th style="text-align: center;">Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">back.seniorlove/event</td>
+<td style="text-align: center;">GET</td>
+<td style="text-align: center;">Envoi la liste de tous les evenements</td>
+</tr>
+<tr>
+<td style="text-align: center;">back.seniorlove/event/:id</td>
+<td style="text-align: center;">GET</td>
+<td style="text-align: center;">Envoi un evenement</td>
+</tr>
+<tr>
+<td style="text-align: center;">back.seniorlove/event</td>
+<td style="text-align: center;">PATCH</td>
+<td style="text-align: center;">Modifie un evenement</td>
+</tr>
+<tr>
+<td style="text-align: center;">back.seniorlove/event/:id</td>
+<td style="text-align: center;">DELETE</td>
+<td style="text-align: center;">Supprime un evenement</td>
+</tr>
+</tbody>
+</table>
+<p>Reservation:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Requête</th>
+<th style="text-align: center;">Méthode</th>
+<th style="text-align: center;">Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">back.seniorlove/reservation</td>
+<td style="text-align: center;">POST</td>
+<td style="text-align: center;">Créer une réservation</td>
+</tr>
+<tr>
+<td style="text-align: center;">back.seniorlove/reservation/:id</td>
+<td style="text-align: center;">DELETE</td>
+<td style="text-align: center;">Supprime une réservation</td>
+</tr>
+</tbody>
+</table>
+<p>Match:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Requête</th>
+<th style="text-align: center;">Méthode</th>
+<th style="text-align: center;">Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">back.seniorlove/match/:id</td>
+<td style="text-align: center;">GET</td>
+<td style="text-align: center;">Trouve les match</td>
+</tr>
+<tr>
+<td style="text-align: center;">back.seniorlove/match/:id</td>
+<td style="text-align: center;">GET</td>
+<td style="text-align: center;">Créer un match</td>
+</tr>
+<tr>
+<td style="text-align: center;">back.seniorlove/match/:id</td>
+<td style="text-align: center;">DELETE</td>
+<td style="text-align: center;">Supprime un match</td>
+</tr>
+</tbody>
+</table>
 
 
 
