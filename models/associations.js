@@ -51,18 +51,3 @@ Conversation.hasMany(Message);
 Message.belongsTo(Conversation, { foreignKey: "conversation_id" })
 
 export { Conversation, Event, Interest, Match, Message, Profile, User };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

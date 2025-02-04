@@ -1,12 +1,16 @@
-import { Conversation, Event, Interest, Match, Message, Profile, User } from "../models/associations.js";
 import sequelize from "../config/database.js";
+import '../models/associations.js';
+
+import Conversation from "../models/Conversation.js";
+import Event from "../models/Event.js";
+import Interest from "../models/Interest.js";
+import Match from "../models/Match.js";
+import Message from "../models/Message.js";
+import Profile from "../models/Profile.js";
+import User from "../models/User.js";
 
 try {
     await sequelize.sync({ force: true })
-    console.log("Base de données synchronisée")
-
-    const tables = await sequelize.getQueryInterface().showAllTables();
-    console.log("Tables existantes :", tables);
 
     await Profile.create({
         pseudo: "Alice60",
@@ -397,33 +401,7 @@ try {
         full_image: "https://i.ibb.co/jPjPWS3j/event-detail12.webp",
         profile_id: 12,
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 catch (error) {
     console.log(error)
-}
+};
