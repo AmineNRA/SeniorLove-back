@@ -1,5 +1,7 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
+import { conversationRouter } from './routes/conversationRoute.js';
+import eventRouter from './routes/eventRoute.js';
 
 // Variable d'environnement
 dotenv.config();
@@ -17,7 +19,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Middleware pour lire du json
-app.use(express.json())
+app.use(express.json());
+
+app.use(conversationRouter);
+app.use(eventRouter);
 
 // Pour indiquer si le serveur est bien allumé
 app.listen(port, () => {
