@@ -30,7 +30,6 @@ Match_Profile.init({
         sequelize,
         modelName: 'Match_Profile',
         tableName: 'match_profile',
-        M
     });
 
 export default Match_Profile;

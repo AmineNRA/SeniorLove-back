@@ -12,7 +12,7 @@ Interest.init({
         sequelize,
         timestamps: false,
         modelName: 'Interest',
-        tablename: 'interest'
+        tableName: 'interest',
     }
 );
 

@@ -8,6 +8,7 @@ import Match from "../models/Match.js";
 import Message from "../models/Message.js";
 import Profile from "../models/Profile.js";
 import User from "../models/User.js";
+import Reservation from "../models/Reservation.js";
 
 try {
     await sequelize.sync({ force: true })
@@ -42,6 +43,11 @@ try {
         max_participant: 15,
         profile_id: 1,
     });
+
+    await Reservation.create({
+        profile_id: 1,
+        event_id: 1
+    })
 
 
     await Profile.create({

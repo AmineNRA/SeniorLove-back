@@ -34,8 +34,8 @@ Profile.belongsToMany(Match, { through: 'match_profile' });
 Match.belongsToMany(Profile, { through: 'match_profile' });
 
 // Many to Many qui va créer une table de liaison entre Profile et interest avec une clé primaire qui aura l'association des deux id pour l'unicité
-Profile.belongsToMany(Interest, { through: 'profile_interest', foreignKey: "profile_id" });
-Interest.belongsToMany(Profile, { through: 'profile_interest', foreignKey: "interest_id" });
+Profile.belongsToMany(Interest, { through: 'interest_profile', foreignKey: "profile_id" });
+Interest.belongsToMany(Profile, { through: 'interest_profile', foreignKey: "interest_id" });
 
 // One to Many entre message et conversation qui va créer une clé étrangère conversation_id dans la table Message
 Conversation.hasMany(Message);

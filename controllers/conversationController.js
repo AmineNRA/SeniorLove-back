@@ -12,7 +12,7 @@ export const conversationController = {
                     [Op.or]: [{ profile_id_1: profile_id }, { profile_id_2: profile_id }]
                 },
             });
-            conversation ?
+            conversation.length > 0 ?
                 res.status(200).json(conversation)
                 :
                 res.status(404).json({ message: "Aucune conversation" })
