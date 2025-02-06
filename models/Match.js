@@ -14,12 +14,6 @@ Match.init({
         paranoid: true,
         modelName: 'Match',
         tableName: 'match',
-        indexes: [
-            {
-                unique: true,
-                fields: ['profile_id_1', 'profile_id_2']
-            }
-        ]
     }
 );
 

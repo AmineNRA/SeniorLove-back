@@ -13,34 +13,25 @@ User.belongsTo(Profile);
 
 
 // One to Many entre profile et event qui va créer une clé étrangère profile_id dans la table Event
-User.hasMany(Event);
-Event.belongsTo(User, { foreignKey: "profile_id" });
+Profile.hasMany(Event);
+Event.belongsTo(Profile, { foreignKey: "profile_id" });
 
 // Many to Many qui va créer une table de liaison entre event et profile avec une clé primaire qui aura l'association des deux id pour l'unicité
-User.belongsToMany(Event, { through: 'reservation', foreignKey: "profile_id" });
-Event.belongsToMany(User, { through: 'reservation', foreignKey: "event_id" })
+Profile.belongsToMany(Event, { through: 'reservation', foreignKey: "profile_id" });
+Event.belongsToMany(Profile, { through: 'reservation', foreignKey: "event_id" })
 
-
-// One to Many entre profile et conversation qui va créer une clé étrangère profile_id_1 dans la table Conversation
-User.hasMany(Conversation, { foreignKey: "profile_id_1" });
-Conversation.belongsTo(User, { foreignKey: "profile_id_1" });
-
-// One to Many entre profile et conversation qui va créer une clé étrangère profile_id_2 dans la table Conversation
-User.hasMany(Conversation, { foreignKey: "profile_id_2" });
-Conversation.belongsTo(User, { foreignKey: "profile_id_2" });
+// Many to Many qui va créer une table de liaison entre Conversation et Profile
+Profile.belongsToMany(Conversation, { through: 'conversation_profile' });
+Conversation.belongsToMany(Profile, { through: 'conversation_profile' });
 
 //// One to Many entre message et profile qui va créer une clé étrangère profile_id dans la table Message
-User.hasMany(Message);
-Message.belongsTo(User, { foreignKey: "profile_id" })
+Profile.hasMany(Message);
+Message.belongsTo(Profile, { foreignKey: "profile_id" })
 
 
-// One to Many entre profile et match qui va créer une clé étrangère profile_id_1 dans la table Match
-User.hasMany(Match, { foreignKey: "profile_id_1" });
-Match.belongsTo(User, { foreignKey: "profile_id_1" });
-
-// One to Many entre profile et match qui va créer une clé étrangère profile_id_2 dans la table Match
-User.hasMany(Match, { foreignKey: "profile_id_2" });
-Match.belongsTo(User, { foreignKey: "profile_id_2" });
+// Many to Many qui va créer une table de liaison entre Match et Profile
+Profile.belongsToMany(Match, { through: 'match_profile' });
+Match.belongsToMany(Profile, { through: 'match_profile' });
 
 // Many to Many qui va créer une table de liaison entre Profile et interest avec une clé primaire qui aura l'association des deux id pour l'unicité
 Profile.belongsToMany(Interest, { through: 'profile_interest', foreignKey: "profile_id" });
