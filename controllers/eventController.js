@@ -1,17 +1,23 @@
 import Event from "../models/Event.js";
 import Reservation from "../models/Reservation.js";
 import Profile from "../models/Profile.js"
+import Match from "../models/Match.js";
+import Match_Profile from "../models/Match_Profile.js";
 
 export const eventController = {
 
     //Controlleur qui envoi la liste de tous les evenements
     getAllEvent: async (req, res) => {
         try {
-            const events = await Event.findAll();
-            events ?
-                res.status(200).json(events)
-                :
-                res.status(404).json({ message: 'Aucun évènement encore créer' })
+            const createMatch = await Match.create();
+            const test = await Match_Profile.bulkCreate([{ match_id: createMatch.id, profile_id: 1, like: 'like' }, { match_id: createMatch.id, profile_id: 2, like: 'pending' }])
+            console.log('le match créé:', createMatch)
+            console.log("les likes créés:", test)
+            // const events = await Event.findAll();
+            // Doit afficher les participants
+            //     res.status(200).json(events)
+            //     :
+            //     res.status(404).json({ message: 'Aucun évènement encore créer' })
         } catch (error) {
             res.status(500).json({ error: error.message })
         };
@@ -19,24 +25,30 @@ export const eventController = {
 
     //Controlleur pour envoyer un seul evenements
     getEvent: async (req, res) => {
+        console.log(Event.associations, 'association event')
+        console.log(Profile.associations, 'association profile')
+        console.log(Reservation.associations, 'association réservation')
         const { id } = req.params
         try {
-            const event = await Event.findOne({
-                where: {
-                    id: id
-                },
-                include: {
-                    model: Reservation,
-                    include: {
-                        model: Profile,
-                        attributes: ["pseudo", "profile_image"]
-                    }
-                }
+            const test = await Event.findOne({
+                where: { id: 1 },
+                include: [{ model: Profile, as: "participants" }]
             });
-            event ?
-                res.status(200).json(event)
-                :
-                res.status(404).json({ message: 'Aucun évènement trouvé' })
+            console.log(test)
+
+            // const event = await Event.findOne({
+            //     where: {
+            //         id: id
+            //     },
+            //     include: {
+            //         model: Profile,
+            //         through: { model: Reservation }
+            //     }
+            // });
+            // event ?
+            //     res.status(200).json(event)
+            //     :
+            //     res.status(404).json({ message: 'Aucun évènement trouvé' })
         } catch (error) {
             res.status(500).json({ error: error.message })
         };

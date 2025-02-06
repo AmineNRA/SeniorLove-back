@@ -31,7 +31,8 @@ User.init({
         allowNull: true
     },
     verified_at: {
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
+        allowNull: true
     }
 },
     {

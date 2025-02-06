@@ -34,4 +34,4 @@ Message.beforeValidate(async (message) => {
     0
 });
 
-export default Message
+export default Message;

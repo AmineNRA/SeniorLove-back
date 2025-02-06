@@ -8,6 +8,11 @@ const dompurify = DOMPurify(new JSDOM('').window)
 class Profile extends Model { };
 
 Profile.init({
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+    },
     pseudo: {
         type: DataTypes.STRING,
         allowNull: false,

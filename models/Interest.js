@@ -16,4 +16,4 @@ Interest.init({
     }
 );
 
-export default Interest
+export default Interest;

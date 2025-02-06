@@ -8,7 +8,6 @@ class Reservation extends Model { };
 Reservation.init({
     event_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         references: {
             model: Event,
             key: "id"
@@ -16,7 +15,6 @@ Reservation.init({
     },
     profile_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         references: {
             model: Profile,
             key: "id"
@@ -25,6 +23,7 @@ Reservation.init({
 },
     {
         sequelize,
+        timestamps: false,
         modelName: 'Reservation',
         tableName: 'reservation',
     });
