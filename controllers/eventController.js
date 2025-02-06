@@ -1,4 +1,6 @@
 import Event from "../models/Event.js";
+import Reservation from "../models/Reservation.js";
+import Profile from "../models/Profile.js"
 
 export const eventController = {
 
@@ -19,7 +21,18 @@ export const eventController = {
     getEvent: async (req, res) => {
         const { id } = req.params
         try {
-            const event = await Event.findByPk(id);
+            const event = await Event.findOne({
+                where: {
+                    id: id
+                },
+                include: {
+                    model: Reservation,
+                    include: {
+                        model: Profile,
+                        attributes: ["pseudo", "profile_image"]
+                    }
+                }
+            });
             event ?
                 res.status(200).json(event)
                 :
