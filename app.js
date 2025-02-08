@@ -2,6 +2,7 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 import { conversationRouter } from './routes/conversationRoute.js';
 import eventRouter from './routes/eventRoute.js';
+import initAssociations from './models/associations.js';
 
 // Variable d'environnement
 dotenv.config();
@@ -9,6 +10,9 @@ dotenv.config();
 //Définir le port sur lequel on sera, soit il est définit dans le .env sinon c'est 3000
 const port = process.env.PORT || 3000;
 const app = express();
+
+// Initialiser les associations avant de démarrer le serveur
+initAssociations();
 
 app.get('/', (req, res) => {
     res.send("Bienvenue sur mon API !")

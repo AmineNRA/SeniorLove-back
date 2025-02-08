@@ -1,20 +1,23 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from "../config/database.js";
 
-class Match extends Model { };
+class Match extends Model { }
 
 Match.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     status: {
         type: DataTypes.ENUM('pending', 'accepted', 'rejected', 'deleted'),
         defaultValue: 'pending'
-    }
-},
-    {
-        sequelize,
-        paranoid: true,
-        modelName: 'Match',
-        tableName: 'match',
-    }
-);
+    },
+}, {
+    sequelize,
+    modelName: 'Match',
+    tableName: 'match'
+});
+
 
 export default Match;

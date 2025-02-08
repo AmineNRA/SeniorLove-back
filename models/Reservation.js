@@ -1,23 +1,23 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from "../config/database.js";
-import Event from './Event.js';
-import Profile from './Profile.js';
 
 class Reservation extends Model { };
 
 Reservation.init({
     event_id: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
         references: {
-            model: Event,
-            key: "id"
+            model: 'match',
+            key: 'id'
         }
     },
     profile_id: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
         references: {
-            model: Profile,
-            key: "id"
+            model: 'profile',
+            key: 'id'
         }
     }
 },

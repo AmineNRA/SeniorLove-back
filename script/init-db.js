@@ -1,6 +1,5 @@
 import sequelize from "../config/database.js";
-import '../models/associations.js';
-
+import initAssociations from "../models/associations.js";
 import Conversation from "../models/Conversation.js";
 import Event from "../models/Event.js";
 import Interest from "../models/Interest.js";
@@ -13,10 +12,16 @@ import Interest_Profile from "../models/Interest_Profile.js";
 import Conversation_Profile from "../models/Conversation_Profile.js";
 import Match_Profile from "../models/Match_Profile.js";
 
+
+initAssociations();
+
 try {
     await sequelize.sync({ force: true })
 
-    const testProfile = await Profile.create({
+    console.log(Match_Profile.associations, "match_profile association")
+    console.log(Profile.associations, "profile association")
+    console.log(Match.associations, "match association")
+    await Profile.create({
         pseudo: "Alice60",
         gender: "Femme",
         city: "Lille",
@@ -32,7 +37,7 @@ try {
         profile_id: 1
     });
 
-    const testEvent = await Event.create({
+    await Event.create({
         title: "Balade en forêt et pique-nique convivial",
         tag: "Sortie",
         description: "Venez partager une journée agréable au cœur de la nature, avec une promenade relaxante suivie d’un pique-nique entre amis.",
@@ -46,10 +51,6 @@ try {
         max_participant: 15,
         profile_id: 1,
     });
-
-    console.log("l'id de event:", testEvent.id);
-    console.log("l'id de profile:", testProfile.id);
-
 
     await Profile.create({
         pseudo: "Brigitte62",

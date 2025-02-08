@@ -60,7 +60,7 @@ Event.init({
     },
     thumbnail_image: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
     },
     full_image: {
         type: DataTypes.TEXT,

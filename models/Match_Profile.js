@@ -1,25 +1,23 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from "../config/database.js";
-import Match from './Match.js';
-import Profile from './Profile.js';
 
 class Match_Profile extends Model { };
 
 Match_Profile.init({
     match_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        primaryKey: true,
         references: {
-            model: Match,
-            key: "id"
+            model: 'match',
+            key: 'id'
         }
     },
     profile_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        primaryKey: true,
         references: {
-            model: Profile,
-            key: "id"
+            model: 'profile',
+            key: 'id'
         }
     },
     like: {
@@ -29,7 +27,7 @@ Match_Profile.init({
     {
         sequelize,
         modelName: 'Match_Profile',
-        tableName: 'match_profile',
+        tableName: 'match_profile'
     });
 
 export default Match_Profile;

@@ -6,48 +6,92 @@ import Interest from "./Interest.js";
 import Match from "./Match.js";
 import Message from "./Message.js";
 import User from "./User.js";
-
 import Conversation_Profile from "./Conversation_Profile.js";
 import Match_Profile from './Match_Profile.js'
 import Interest_Profile from './Interest_Profile.js'
 
+export default function initAssociations() {
+    // 1. User & Profile (One-to-One)
+    Profile.hasOne(User, {
+        foreignKey: "profile_id"
+    });
+    User.belongsTo(Profile, {
+        foreignKey: "profile_id"
+    });
 
-// One to One entre profile et user qui va créer une clé étrangère profile_id dans la table Profile
-Profile.hasOne(User, { foreignKey: "profile_id" });
-User.belongsTo(Profile);
+    // 2. Event & Profile (One-to-Many pour création + Many-to-Many pour réservations)
+    Profile.hasMany(Event, {
+        foreignKey: "profile_id",
+        as: "created_events"
+    });
+    Event.belongsTo(Profile, {
+        foreignKey: "profile_id",
+        as: "creator"
+    });
 
+    // Many-to-Many avec Reservation
+    Profile.belongsToMany(Event, {
+        through: 'Reservation',
+        foreignKey: "profile_id",
+        as: "reserved_events"
+    });
+    Event.belongsToMany(Profile, {
+        through: 'Reservation',
+        foreignKey: "event_id",
+        as: "participants"
+    });
 
-// One to Many entre profile et event qui va créer une clé étrangère profile_id dans la table Event
-// Profile.hasMany(Event, { foreignKey: "profile_id" });
-// Event.belongsTo(Profile, { foreignKey: "profile_id" });
+    // 3. Profile & Interest (Many-to-Many)
+    Profile.belongsToMany(Interest, {
+        through: 'Interest_Profile',
+        foreignKey: "profile_id",
+        as: "interests"
+    });
+    Interest.belongsToMany(Profile, {
+        through: 'Interest_Profile',
+        foreignKey: "interest_id",
+        as: "interested_profiles"
+    });
 
-// Many to Many qui va créer une table de liaison entre event et profile avec une clé primaire qui aura l'association des deux id pour l'unicité
-Profile.belongsToMany(Event, { through: Reservation, as: "reservedEvents" });
-Event.belongsToMany(Profile, { through: Reservation, as: "participants" });
+    // 4. Profile & Match (Many-to-Many)
+    Profile.belongsToMany(Match, {
+        through: 'Match_Profile',
+        foreignKey: "profile_id",
+        as: "matches"
+    });
+    Match.belongsToMany(Profile, {
+        through: 'Match_Profile',
+        foreignKey: "match_id",
+        as: "matched_profiles"
+    });
 
-console.log("Event associations :", Event.associations);
-console.log("Profile associations :", Profile.associations);
-console.log("Reservation associations :", Reservation.associations);
+    // 5. Profile & Conversation (Many-to-Many)
+    Profile.belongsToMany(Conversation, {
+        through: 'Conversation_Profile',
+        foreignKey: "profile_id",
+        as: "conversations"
+    });
+    Conversation.belongsToMany(Profile, {
+        through: 'Conversation_Profile',
+        foreignKey: "conversation_id",
+        as: "participants"
+    });
 
-// Many to Many qui va créer une table de liaison entre Conversation et Profile
-Profile.belongsToMany(Conversation, { through: Conversation_Profile });
-Conversation.belongsToMany(Profile, { through: Conversation_Profile });
+    // 6. Conversation & Message (One-to-Many)
+    Conversation.hasMany(Message, {
+        foreignKey: "conversation_id"
+    });
+    Message.belongsTo(Conversation, {
+        foreignKey: "conversation_id"
+    });
 
-//// One to Many entre message et profile qui va créer une clé étrangère profile_id dans la table Message
-Profile.hasMany(Message);
-Message.belongsTo(Profile, { foreignKey: "profile_id" })
-
-
-// Many to Many qui va créer une table de liaison entre Match et Profile
-Profile.belongsToMany(Match, { through: Match_Profile });
-Match.belongsToMany(Profile, { through: Match_Profile });
-
-// Many to Many qui va créer une table de liaison entre Profile et interest avec une clé primaire qui aura l'association des deux id pour l'unicité
-Profile.belongsToMany(Interest, { through: Interest_Profile });
-Interest.belongsToMany(Profile, { through: Interest_Profile });
-
-// One to Many entre message et conversation qui va créer une clé étrangère conversation_id dans la table Message
-Conversation.hasMany(Message);
-Message.belongsTo(Conversation, { foreignKey: "conversation_id" })
-
-export { Conversation, Event, Interest, Match, Message, Profile, User, Reservation, Interest_Profile, Conversation_Profile, Match_Profile };
+    // 7. Profile & Message (One-to-Many)
+    Profile.hasMany(Message, {
+        foreignKey: "profile_id",
+        as: "sent_messages"
+    });
+    Message.belongsTo(Profile, {
+        foreignKey: "profile_id",
+        as: "sender"
+    });
+}
