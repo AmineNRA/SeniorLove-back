@@ -1,14 +1,36 @@
 import Profile from "../models/Profile.js";
 import User from "../models/User.js"
+import Match from "../models/Match.js";
 import * as dotenv from "dotenv";
 import { Op } from "sequelize";
+import sequelize from "../config/database.js";
 
 export const profileController = {
 
+    //Controller pour afficher le profil et si le user a liké ou pas ce profil
     getProfile: async (req, res) => {
-        const profile_id = req.params.id;
+        const profile_id = req.query.profile_id;
+        const user_id = req.query.user_id;
         try {
-            const profile = await Profile.findByPk(profile_id);
+            const profile = await Profile.findOne({
+                where: { id: profile_id },
+                include: [{
+                    model: Match,
+                    as: 'matches',
+                    through: {
+                        attributes: [['like', 'like']],
+                        where: {
+                            match_id: {
+                                [Op.in]: sequelize.literal(`(
+                                    SELECT match_id 
+                                    FROM match_profile 
+                                    WHERE profile_id = ${user_id}
+                                )`)
+                            }
+                        }
+                    },
+                }]
+            });
             profile ?
                 res.status(200).json(profile)
                 :

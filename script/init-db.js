@@ -49,11 +49,6 @@ try {
         profile_id: 1,
     });
 
-    await Reservation.create({
-        event_id: 1,
-        profile_id: 1
-    })
-
 
     await Profile.create({
         pseudo: "Brigitte62",
@@ -461,6 +456,46 @@ try {
         event_id: 12,
         profile_id: 12
     })
+
+    await Reservation.create({
+        event_id: 1,
+        profile_id: 1
+    })
+
+    await Match.create({
+        id: 1,
+        status: 'pending'
+    })
+
+    await Match.create({
+        id: 2,
+        status: 'accepted'
+    })
+
+    await Match_Profile.create({
+        match_id: 1,
+        profile_id: 1,
+        like: 'like'
+    })
+
+    await Match_Profile.create({
+        match_id: 1,
+        profile_id: 2,
+        like: 'pending'
+    })
+
+    await Match_Profile.create({
+        match_id: 2,
+        profile_id: 1,
+        like: 'like'
+    })
+
+    await Match_Profile.create({
+        match_id: 2,
+        profile_id: 8,
+        like: 'like'
+    })
+
 }
 catch (error) {
     console.log(error)
