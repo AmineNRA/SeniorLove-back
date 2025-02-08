@@ -620,12 +620,12 @@ Il y aura une indiquation sur chaque controlleur et qu'est ce qu'il récupère d
 <td>Trouve les match</td>
 </tr>
 <tr>
-<td>back.seniorlove/match/:id</td>
+<td>back.seniorlove/match?profile_id&amp;user_id</td>
 <td>GET</td>
 <td>Créer un match</td>
 </tr>
 <tr>
-<td>back.seniorlove/match/:id</td>
+<td>back.seniorlove/match/delete?match_id&amp;user_id</td>
 <td>DELETE</td>
 <td>Supprime un match</td>
 </tr>
@@ -678,6 +678,22 @@ Time: 45 ms
 <pre><code class="language-js">Status: 200 OK
 Size: 17 Bytes
 Time: 314 ms
+</code></pre>
+<p><strong>Test pour les routes match:</strong></p>
+<p>back.seniorlove/match/:id :</p>
+<pre><code class="language-js">Status: 200 OK
+Size: 441 Bytes
+Time: 80 ms
+</code></pre>
+<p>back.seniorlove/match?profile_id&amp;user_id :</p>
+<pre><code class="language-js">Status: 200 OK
+Size: 125 Bytes
+Time: 36 ms
+</code></pre>
+<p>DELETE back.seniorlove/match/delete?match_id&amp;user_id :</p>
+<pre><code class="language-js">Status: 201 Created
+Size: 43 Bytes
+Time: 73 ms
 </code></pre>
 
 
