@@ -296,6 +296,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -343,6 +352,15 @@
   <a href="#endpoint-api" class="md-nav__link">
     <span class="md-ellipsis">
       Endpoint API
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test
     </span>
   </a>
   
@@ -553,7 +571,7 @@ Il y aura une indiquation sur chaque controlleur et qu'est ce qu'il récupère d
 <td>Créer un évènement</td>
 </tr>
 <tr>
-<td>back.seniorlove/event</td>
+<td>back.seniorlove/event/:id</td>
 <td>PATCH</td>
 <td>Modifie un evenement</td>
 </tr>
@@ -613,6 +631,32 @@ Il y aura une indiquation sur chaque controlleur et qu'est ce qu'il récupère d
 </tr>
 </tbody>
 </table>
+<h2 id="test">Test</h2>
+<p>back.seniorlove/event :</p>
+<pre><code class="language-js">Status: 200 OK
+Size: 517 Bytes
+Time: 79 ms
+</code></pre>
+<p>back.seniorlove/event/:id :</p>
+<pre><code class="language-js">Status: 200 OK
+Size: 686 Bytes
+Time: 146 ms
+</code></pre>
+<p>POST back.seniorlove/event :</p>
+<pre><code class="language-js">Status: 201 Created
+Size: 1 Bytes
+Time: 545 ms
+</code></pre>
+<p>PATCH back.seniorlove/event/:id :</p>
+<pre><code class="language-js">Status: 200 OK
+Size: 561 Bytes
+Time: 99 ms
+</code></pre>
+<p>DELETE PATCH back.seniorlove/event :</p>
+<pre><code class="language-js">Status: 200 OK
+Size: 34 Bytes
+Time: 79 ms
+</code></pre>
 
 
 
