@@ -31,14 +31,20 @@ export const eventController = {
                 where: {
                     id: event_id
                 },
-                include: {
+                include: [{
                     model: Profile,
                     as: "participants",
                     attributes: ['pseudo', 'profile_image'],
                     through: {
                         attributes: []
                     }
+                },
+                {
+                    model: Profile,
+                    as: "creator",
+                    attributes: ['pseudo']
                 }
+                ]
             })
             oneEvent ?
                 res.status(200).json(oneEvent)
@@ -52,7 +58,7 @@ export const eventController = {
         }
     },
 
-    //Controlleur pour créer un evenement EN COURS
+    //Controlleur pour créer un evenement
     createEvent: async (req, res) => {
 
         //Récupération des infos envoyé du front

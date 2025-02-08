@@ -1,7 +1,8 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
-import { conversationRouter } from './routes/conversationRoute.js';
+import conversationRouter from './routes/conversationRoute.js';
 import eventRouter from './routes/eventRoute.js';
+import profileRouter from './routes/profileRoute.js';
 import initAssociations from './models/associations.js';
 
 // Variable d'environnement
@@ -27,6 +28,7 @@ app.use(express.json());
 
 app.use(conversationRouter);
 app.use(eventRouter);
+app.use(profileRouter);
 
 // Pour indiquer si le serveur est bien allumé
 app.listen(port, () => {
