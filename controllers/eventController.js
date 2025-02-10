@@ -9,7 +9,6 @@ export const eventController = {
     //Controlleur qui envoi la liste de tous les evenements
     getAllEvent: async (req, res) => {
         try {
-            //title, date, tag, description, thumnail_image
             const event = await Event.findAll({
                 attributes: ['id', 'title', 'tag', 'description', 'thumbnail_image']
             })

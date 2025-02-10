@@ -25,7 +25,9 @@ Message.init({
     {
         sequelize,
         modelName: 'Message',
-        tableName: 'message'
+        tableName: 'message',
+        timestamps: true,
+        underscored: true
     }
 );
 

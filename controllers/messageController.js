@@ -1,33 +1,52 @@
-import Message from '../models/messageModel.js';
+import Message from '../models/Message.js';
+import Conversation from '../models/Conversation.js';
+import Conversation_Profile from '../models/Conversation_Profile.js';
 
 
 export const messageController = {
 
-    //Controlleur pour récupérer les messages d'une conversation
-    getMessages: async (req, res) => {
-        const { conversation_id } = req.params;
-        try {
-            const messages = await Message.findAll({
-                where: { conversation_id: conversation_id },
-            });
-            messages ?
-                res.status(200).json(messages)
-                :
-                res.status(404).json({ message: 'Aucun message' })
-        } catch (error) {
-            res.status(500).json({ error: error.message })
-        }
-    },
-
     //Controlleur pour créer un message
     createMessage: async (req, res) => {
         const dataMessage = req.body;
+
         try {
-            const newMessage = await Message.create(dataMessage);
-            newMessage ?
-                res.status(201).json(newMessage)
-                :
-                res.status(400).json({ message: "Une erreur est survenu lors de la création du message" })
+            //On va vérifie si conversation n'est pas égale à 0
+            if (dataMessage.conversation_id != 0) {
+
+                //Si c'est le cas nous allons créer le message tout simplement
+                const newMessage = await Message.create({
+                    content: dataMessage.content,
+                    profile_id: dataMessage.user_id,
+                    conversation_id: dataMessage.conversation_id
+                });
+                newMessage ?
+                    res.status(201).json(newMessage)
+                    :
+                    res.status(400).json({ message: "Une erreur est survenu lors de la création du message" })
+            }
+            else {
+                //Sinon ca veut dire que la conversation n'existe pas encore et là on va créer la conversation, les lignes sur notre table de jointure et le nouveau message
+                const newConversation = await Conversation.create();
+
+                await Promise.all([
+                    Conversation_Profile.create({
+                        conversation_id: newConversation.id,
+                        profile_id: dataMessage.user_id
+                    }),
+                    Conversation_Profile.create({
+                        conversation_id: newConversation.id,
+                        profile_id: dataMessage.profile_id
+                    })
+                ])
+
+                const newMessage = await Message.create({
+                    content: newConversation.id,
+                    profile_id: dataMessage.user_id,
+                    conversation_id: dataMessage.conversation_id
+                })
+
+                res.status(201).json({ newMessage })
+            }
         } catch (error) {
             res.status(500).json({ error: error.message })
         }

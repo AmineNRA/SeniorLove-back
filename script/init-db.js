@@ -452,6 +452,7 @@ try {
         profile_id: 12,
     });
 
+
     await Reservation.create({
         event_id: 12,
         profile_id: 12
@@ -461,6 +462,7 @@ try {
         event_id: 1,
         profile_id: 1
     })
+
 
     await Match.create({
         id: 1,
@@ -494,6 +496,115 @@ try {
         match_id: 2,
         profile_id: 8,
         like: 'like'
+    })
+
+
+    await Conversation.create({
+        id: 1
+    })
+
+    await Conversation.create({
+        id: 2
+    })
+
+    await Conversation.create({
+        id: 3
+    })
+
+    await Conversation.create({
+        id: 4
+    })
+
+    await Conversation_Profile.create({
+        conversation_id: 1,
+        profile_id: 1
+    })
+
+    await Conversation_Profile.create({
+        conversation_id: 1,
+        profile_id: 2
+    })
+
+    await Conversation_Profile.create({
+        conversation_id: 2,
+        profile_id: 1
+    })
+
+    await Conversation_Profile.create({
+        conversation_id: 2,
+        profile_id: 8
+    })
+
+    await Conversation_Profile.create({
+        conversation_id: 3,
+        profile_id: 2
+    })
+
+    await Conversation_Profile.create({
+        conversation_id: 3,
+        profile_id: 10
+    })
+
+    await Conversation_Profile.create({
+        conversation_id: 4,
+        profile_id: 4
+    })
+
+    await Conversation_Profile.create({
+        conversation_id: 4,
+        profile_id: 9
+    })
+
+
+    await Message.create({
+        content: "Ecoute ca va bien hein et toi alors raconte moi ? ",
+        conversation_id: 1,
+        profile_id: 1,
+        status: 'read'
+    })
+
+    await Message.create({
+        content: " Ca va écoute, je vais participer à un event relaxation tu veux venir ? ",
+        conversation_id: 1,
+        profile_id: 2
+    })
+
+    await Message.create({
+        content: "Hey ca va ? ",
+        conversation_id: 2,
+        profile_id: 8,
+        status: 'read'
+    })
+
+    await Message.create({
+        content: "Ca va super, tu fais quoi ce week end :)",
+        conversation_id: 2,
+        profile_id: 1
+    })
+
+    await Message.create({
+        content: "Ecoute ca va bien hein et toi alors raconte moi ? ",
+        conversation_id: 3,
+        profile_id: 2,
+        status: 'read'
+    })
+
+    await Message.create({
+        content: "Ca va super, tu fais quoi ce week end :)",
+        conversation_id: 3,
+        profile_id: 10
+    })
+
+    await Message.create({
+        content: "Ouais c'est exactement ça !",
+        conversation_id: 4,
+        profile_id: 4
+    })
+
+    await Message.create({
+        content: "Ahah je me disais bien que c'était toi !",
+        conversation_id: 4,
+        profile_id: 9
     })
 
 }
