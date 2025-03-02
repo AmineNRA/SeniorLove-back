@@ -16,7 +16,7 @@ export const messageController = {
                 //Si c'est le cas nous allons créer le message tout simplement
                 const newMessage = await Message.create({
                     content: dataMessage.content,
-                    profile_id: dataMessage.user_id,
+                    profile_id: req.user.id,
                     conversation_id: dataMessage.conversation_id
                 });
                 newMessage ?
@@ -31,7 +31,7 @@ export const messageController = {
                 await Promise.all([
                     Conversation_Profile.create({
                         conversation_id: newConversation.id,
-                        profile_id: dataMessage.user_id
+                        profile_id: req.user.id
                     }),
                     Conversation_Profile.create({
                         conversation_id: newConversation.id,
@@ -41,7 +41,7 @@ export const messageController = {
 
                 const newMessage = await Message.create({
                     content: newConversation.id,
-                    profile_id: dataMessage.user_id,
+                    profile_id: req.user.id,
                     conversation_id: dataMessage.conversation_id
                 })
 

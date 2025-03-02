@@ -2,6 +2,7 @@ import { Model, DataTypes } from 'sequelize';
 import sequelize from "../config/database.js";
 import DOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom';
+import bcrypt from "bcrypt";
 
 const dompurify = DOMPurify(new JSDOM('').window)
 
@@ -12,6 +13,27 @@ Profile.init({
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
+    },
+    mail: {
+        type: DataTypes.STRING,
+        unique: true,
+        validate: {
+            isEmail: {
+                args: true,
+                msg: "L'email n'est pas valide"
+            },
+            notEmpty: {
+                args: true,
+                msg: "Vous devez renseigner une adresse mail"
+            }
+        }
+    },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
     },
     pseudo: {
         type: DataTypes.STRING,
@@ -55,9 +77,13 @@ Profile.init({
             }
         }
     },
-    profile_image: {
-        type: DataTypes.TEXT,
-        defaultValue: '/public/img/default-avatar.webp'
+    disabled_at: {
+        type: DataTypes.DATE,
+        allowNull: true
+    },
+    verified_at: {
+        type: DataTypes.DATE,
+        allowNull: true
     }
 },
     {
@@ -66,6 +92,11 @@ Profile.init({
         tableName: 'profile'
     }
 );
+
+Profile.beforeCreate(async (user) => {
+    const hash = await bcrypt.hash(user.password, 10)
+    user.password = hash
+});
 
 Profile.beforeValidate(async (profile) => {
     if (profile.description) {

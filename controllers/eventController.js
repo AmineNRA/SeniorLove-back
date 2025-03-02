@@ -1,7 +1,7 @@
 import Event from "../models/Event.js";
 import Profile from "../models/Profile.js"
 import Reservation from "../models/Reservation.js"
-import * as dotenv from 'dotenv';
+import imagesServices from "../services/imagesServices.js";
 import sharp from "sharp";
 
 export const eventController = {
@@ -68,40 +68,12 @@ export const eventController = {
             //Récupération de l'image en base64 et on enlève le début qui défini le type
             let fullImageBase64 = req.body.full_image.split(';base64,').pop();
 
-            // Utilisation de sharp pour modifier l'image pour qu'elle soit dans les dimensions de thumbnail image
-            const resizedImageBuffer = await sharp(Buffer.from(fullImageBase64, 'base64'))
-                .resize(393, 360)
-                .toBuffer();
+            // Utilisation de la fonction imagesServices pour modifier l'images pour la photo thumbnail et aussi pour envoyer à notre cdn
+            const urlImages = await imagesServices(fullImageBase64, "event", 0)
 
-            //Fetch pour envoyer nos deux images sur notre cdn
-            const [fullImageResponse, thumbnailResponse] = await Promise.all([
-                // Upload full_image
-                fetch('https://api.imgbb.com/1/upload', {
-                    method: 'POST',
-                    body: new URLSearchParams({
-                        key: process.env.CDN,
-                        image: fullImageBase64
-                    })
-                }),
-                // Upload thumbnail_image
-                fetch('https://api.imgbb.com/1/upload', {
-                    method: 'POST',
-                    body: new URLSearchParams({
-                        key: process.env.CDN,
-                        image: resizedImageBuffer.toString('base64')
-                    })
-                })
-            ]);
-
-            // On récupère la réponse et on l'a transforme pour qu'on puisse la lire
-            const [fullImageData, thumbnailData] = await Promise.all([
-                fullImageResponse.json(),
-                thumbnailResponse.json()
-            ])
-
-            //On ajoute les liens dans notre objet dataEvent
-            dataEvent.full_image = fullImageData.data.display_url;
-            dataEvent.thumbnail_image = thumbnailData.data.display_url
+            // Ajout des réponses dans l'objet dataEvent
+            dataEvent.full_image = urlImages.fullImageResponse;
+            dataEvent.thumbnail_image = urlImages.thumbnailResponse;
 
             // On créer l'évènement avec l'objet dataEvent qui comporte maintenant tout ce qu'il nous faut
             const newEvent = await Event.create(dataEvent);

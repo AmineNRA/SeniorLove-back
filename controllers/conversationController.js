@@ -1,5 +1,6 @@
 import Conversation from "../models/Conversation.js";
 import Profile from "../models/Profile.js";
+import Picture from "../models/Picture.js";
 import Conversation_Profile from "../models/Conversation_Profile.js";
 import Message from "../models/Message.js";
 import { Op } from "sequelize";
@@ -9,7 +10,7 @@ export const conversationController = {
 
     //Controlleur pour chercher la liste des conversations ou l'utilisateur est impliqué
     getAllConversation: async (req, res) => {
-        const { profile_id } = req.params
+        const profile_id = req.user.id
         try {
 
             //On va recherche toutes les conversations qui sont liés à un profile_id grace à la table de liaison, on va récupérer le profile du partcipants qui n'est pas notre profile_id et ajouter le dernier message de cette conversation.
@@ -19,11 +20,15 @@ export const conversationController = {
                     {
                         model: Profile,
                         as: 'participants',
-                        attributes: ['pseudo', 'profile_image'],
+                        attributes: ['pseudo'],
                         where: {
                             id: { [Op.ne]: profile_id }
                         },
                         through: { attributes: [] },
+                        include: [{
+                            model: Picture,
+                            attributes: ['url'],
+                        }]
 
                     },
                     {
@@ -46,11 +51,9 @@ export const conversationController = {
                 //On va formater le résultat pour une simplicité d'utilisation coté front
                 const formattedConversations = allConversation.map(conv => ({
                     id: conv.id,
-                    participant: {
-                        pseudo: conv.participants[0].pseudo,
-                        profile_image: conv.participants[0].profile_image,
-                    },
-                    lastMessage: conv.Messages[0].content
+                    pseudo: conv.participants[0].pseudo,
+                    profile_image: conv.participants[0].Pictures[0]?.url || null,
+                    lastMessage: conv.Messages[0]?.content || null
                 }));
 
                 //On va envoyer le résultat
@@ -65,7 +68,7 @@ export const conversationController = {
     },
 
     getConversation: async (req, res) => {
-        const { user_id, profile_id } = req.query;
+        const profile_id = req.query.profile_id;
 
         //On va vérifier si une conversation existe entre les deux
         const conversation = await Conversation.findOne({
@@ -78,7 +81,11 @@ export const conversationController = {
                 include: {
                     model: Profile,
                     as: "sender",
-                    attributes: ['id', 'pseudo', 'profile_image']
+                    attributes: ['id', 'pseudo'],
+                    include: [{
+                        model: Picture,
+                        attributes: ['url'],
+                    }]
                 }
             },
             where: sequelize.literal(`
@@ -93,7 +100,7 @@ export const conversationController = {
                     SELECT 1 
                     FROM "conversation_profile" cp2
                     WHERE cp2."conversation_id" = "Conversation"."id" 
-                    AND cp2."profile_id" = ${user_id}
+                    AND cp2."profile_id" = ${req.user.id}
                 )
             `),
         });
@@ -108,7 +115,7 @@ export const conversationController = {
                     created_at: message.dataValues.created_at,
                     id_profile: message.sender.id,
                     pseudo: message.sender.pseudo,
-                    profile_image: message.sender.profile_image
+                    profile_image: message.sender.Pictures[0]?.url || null,
                 })
                 )
             };

@@ -6,7 +6,7 @@ import Interest from "../models/Interest.js";
 import Match from "../models/Match.js";
 import Message from "../models/Message.js";
 import Profile from "../models/Profile.js";
-import User from "../models/User.js";
+import Picture from "../models/Picture.js";
 import Reservation from "../models/Reservation.js";
 import Interest_Profile from "../models/Interest_Profile.js";
 import Conversation_Profile from "../models/Conversation_Profile.js";
@@ -18,21 +18,82 @@ initAssociations();
 try {
     await sequelize.sync({ force: true })
 
+
+    await Interest.bulkCreate([
+        { name: '🥾 Promenades / randonnées' },
+        { name: '🚴 Vélo' },
+        { name: '🎨 Peinture' },
+        { name: '🎣 Pêche' },
+        { name: '✏️ Dessin' },
+        { name: '🏃 Course à pied' },
+        { name: '🧘 Relaxation' },
+        { name: '💃 Danse' },
+        { name: '🎬 Cinéma' },
+        { name: '🍳 Cuisine' },
+        { name: '🎵 Musique' },
+        { name: '🧵 Couture' },
+        { name: '🎤 Chant' },
+        { name: '🧶 Tricot' },
+        { name: '🏛️ Musée' },
+        { name: '✈️ Voyage' },
+        { name: '🧠 Réflexion / logique' },
+        { name: '📖 Lecture' },
+        { name: '🎭 Théâtre' },
+        { name: '✍️ Écriture' },
+        { name: '🏐 Pétanque' },
+        { name: '🎲 Jeux de société' },
+        { name: '🎮 Jeux vidéo' },
+        { name: '🧘‍♂️ Yoga' },
+        { name: '🌱 Jardinage' },
+        { name: '🔭 Astronomie' },
+        { name: '📷 Photographie' },
+        { name: '🏋️‍♂️ Sport en salle' },
+        { name: '🏊‍♂️ Natation' },
+        { name: '🕉️ Méditation' },
+        { name: '⛺ Camping' },
+        { name: '🚐 Voyages en van' },
+        { name: '🏄‍♂️ Surf' },
+        { name: '🎿 Ski / Snowboard' },
+        { name: '🏎️ Karting' },
+        { name: '🐎 Équitation' },
+        { name: '🛠️ Bricolage' },
+        { name: '🚗 Automobile' },
+        { name: '✈️ Aviation' },
+        { name: '🍷 Dégustation de vin' },
+        { name: '🏺 Céramique / Poterie' },
+        { name: '🤺 Escrime' },
+        { name: '🔐 Escape game' },
+        { name: '🎤 Karaoké' },
+        { name: '🖌️ Graphisme / Design' },
+        { name: '🖋️ Tatouage / Piercing' },
+        { name: '🌿 Écologie' },
+        { name: '🦢 Origami' },
+        { name: '🎤 Stand-up / Humour' },
+        { name: '📚 Manga / Anime' }
+    ])
+
+
     await Profile.create({
+        mail: "alice60@gmail.com",
+        password: "admin1234",
         pseudo: "Alice60",
         gender: "Femme",
         city: "Lille",
         age: 60,
         description: "Amoureuse de la lecture et des balades en pleine nature, je recherche quelqu'un pour partager des moments paisibles et enrichissants.",
         looking_for: "Homme",
-        profile_image: "https://i.ibb.co/k6MYpJVd/alice60.webp"
     })
 
-    await User.create({
-        mail: "alice60@gmail.com",
-        password: "admin1234",
+    await Picture.create({
+        url: "https://i.ibb.co/k6MYpJVd/alice60.webp",
+        position: 1,
         profile_id: 1
     });
+
+    await Interest_Profile.create({
+        interest_id: 1,
+        profile_id: 1
+    })
 
     await Event.create({
         title: "Balade en forêt et pique-nique convivial",
@@ -51,20 +112,31 @@ try {
 
 
     await Profile.create({
+        mail: "brigitte62@gmail.com",
+        password: "admin1234",
         pseudo: "Brigitte62",
         gender: "Femme",
         city: "Strasbourg",
         age: 62,
         description: "Artiste dans l'âme, je passe mon temps libre à peindre ou à visiter des galeries. Je suis une personne douce et créative.",
         looking_for: "Homme",
-        profile_image: "https://i.ibb.co/NdWLXG8B/brigitte62.webp",
     })
 
-    await User.create({
-        mail: "brigitte62@gmail.com",
-        password: "admin1234",
-        profile_id: 2,
+    await Picture.create({
+        url: "https://i.ibb.co/NdWLXG8B/brigitte62.webp",
+        position: 1,
+        profile_id: 2
     });
+
+    await Interest_Profile.create({
+        interest_id: 2,
+        profile_id: 2
+    })
+
+    await Interest_Profile.create({
+        interest_id: 1,
+        profile_id: 2
+    })
 
     await Event.create({
         title: "Atelier peinture en plein air",
@@ -88,20 +160,26 @@ try {
 
 
     await Profile.create({
+        mail: "claudine64@gmail.com",
+        password: "admin1234",
         pseudo: "Claudine64",
         gender: "Femme",
         city: "Rennes",
         age: 64,
         description: "Passionnée de cuisine et de danse, j'adore organiser des dîners et des soirées animées. La joie de vivre est ma devise.",
         looking_for: "Homme",
-        profile_image: "https://i.ibb.co/ZzKS7CNw/claudine64.webp",
     })
 
-    await User.create({
-        mail: "claudine64@gmail.com",
-        password: "admin1234",
-        profile_id: 3,
+    await Picture.create({
+        url: "https://i.ibb.co/ZzKS7CNw/claudine64.webp",
+        position: 1,
+        profile_id: 3
     });
+
+    await Interest_Profile.create({
+        interest_id: 3,
+        profile_id: 3
+    })
 
     await Event.create({
         title: "Soirée dansante rétro",
@@ -125,20 +203,26 @@ try {
 
 
     await Profile.create({
+        mail: "danielle66@gmail.com",
+        password: "admin1234",
         pseudo: "Danielle66",
         gender: "Femme",
         city: "Dijon",
         age: 66,
         description: "Passionnée par la couture et le crochet, je suis une personne calme et attentionnée. Je cherche une personne pour partager des discussions profondes et sincères.",
         looking_for: "Homme",
-        profile_image: "https://i.ibb.co/JRRTd6XW/danielle66.webp",
     })
 
-    await User.create({
-        mail: "danielle66@gmail.com",
-        password: "admin1234",
-        profile_id: 4,
+    await Picture.create({
+        url: "https://i.ibb.co/JRRTd6XW/danielle66.webp",
+        position: 1,
+        profile_id: 4
     });
+
+    await Interest_Profile.create({
+        interest_id: 4,
+        profile_id: 4
+    })
 
     await Event.create({
         title: "Atelier cuisine : spécial plats régionaux",
@@ -162,20 +246,26 @@ try {
 
 
     await Profile.create({
+        mail: "evelyne68@gmail.com",
+        password: "admin1234",
         pseudo: "Evelyne68",
         gender: "Femme",
         city: "Nantes",
         age: 68,
         description: "Fan de théâtre et de chant, j'adore la scène et les arts vivants. Je recherche une personne avec qui vivre des moments culturels intenses.",
         looking_for: "Homme",
-        profile_image: "https://i.ibb.co/KjL3jpBN/evelyne68.webp",
     })
 
-    await User.create({
-        mail: "evelyne68@gmail.com",
-        password: "admin1234",
-        profile_id: 5,
+    await Picture.create({
+        url: "https://i.ibb.co/KjL3jpBN/evelyne68.webp",
+        position: 1,
+        profile_id: 5
     });
+
+    await Interest_Profile.create({
+        interest_id: 5,
+        profile_id: 5
+    })
 
     await Event.create({
         title: "Rencontre littéraire autour d’un café",
@@ -200,20 +290,26 @@ try {
 
 
     await Profile.create({
+        mail: "francoise70@gmail.com",
+        password: "admin1234",
         pseudo: "Françoise70",
         gender: "Femme",
         city: "Montpellier",
         age: 70,
         description: "Toujours en quête d'aventure, je suis passionnée de voyage et de danse. J'aime découvrir de nouveaux horizons et partager ma joie de vivre.",
         looking_for: "Homme",
-        profile_image: "https://i.ibb.co/nM7RQrh8/francoise70.webp",
     })
 
-    await User.create({
-        mail: "francoise70@gmail.com",
-        password: "admin1234",
-        profile_id: 6,
+    await Picture.create({
+        url: "https://i.ibb.co/nM7RQrh8/francoise70.webp",
+        position: 1,
+        profile_id: 6
     });
+
+    await Interest_Profile.create({
+        interest_id: 6,
+        profile_id: 6
+    })
 
     await Event.create({
         title: "Atelier crochet et tricot",
@@ -237,20 +333,26 @@ try {
 
 
     await Profile.create({
+        mail: "albert60@gmail.com",
+        password: "admin1234",
         pseudo: "Albert60",
         gender: "Homme",
         city: "Lyon",
         age: 60,
         description: "Passionné par l'escalade, je suis ce qu'on peut appeler un épicurien. J'aime partager des moments simples autour d'un bon repas ou d'une balade au grand air.",
         looking_for: "Femme",
-        profile_image: "https://i.ibb.co/tpkSXwXF/albert60.webp",
     })
 
-    await User.create({
-        mail: "albert60@gmail.com",
-        password: "admin1234",
-        profile_id: 7,
+    await Picture.create({
+        url: "https://i.ibb.co/tpkSXwXF/albert60.webp",
+        position: 1,
+        profile_id: 7
     });
+
+    await Interest_Profile.create({
+        interest_id: 7,
+        profile_id: 7
+    })
 
     await Event.create({
         title: "Visite guidée du musée des Beaux-Arts",
@@ -274,20 +376,35 @@ try {
 
 
     await Profile.create({
+        mail: "bernard62@gmail.com",
+        password: "admin1234",
         pseudo: "Bernard62",
         gender: "Homme",
         city: "Marseille",
         age: 62,
         description: "Ancien marin, j'aime les histoires de voyages et d'aventures. Je suis quelqu'un de calme et de réfléchi, et je cherche une compagne pour partager les plaisirs simples de la vie.",
         looking_for: "Femme",
-        profile_image: "https://i.ibb.co/RTNQfnLM/bernard62.webp",
     })
 
-    await User.create({
-        mail: "bernard62@gmail.com",
-        password: "admin1234",
-        profile_id: 8,
+    await Picture.create({
+        url: "https://i.ibb.co/RTNQfnLM/bernard62.webp",
+        position: 1,
+        profile_id: 8
     });
+
+    await Interest_Profile.create({
+        interest_id: 8,
+        profile_id: 8
+    })
+
+    await Interest_Profile.create({
+        interest_id: 7,
+        profile_id: 8
+    })
+    await Interest_Profile.create({
+        interest_id: 6,
+        profile_id: 8
+    })
 
     await Event.create({
         title: "Pétanque et apéritif au bord de l’eau",
@@ -311,20 +428,26 @@ try {
 
 
     await Profile.create({
+        mail: "charles64@gmail.com",
+        password: "admin1234",
         pseudo: "Charles64",
         gender: "Homme",
         city: "Paris",
         age: 64,
         description: "Professeur à la retraite, je suis passionné par l'histoire et les musées. J'aime également les promenades dans les parcs et découvrir de nouvelles expositions.",
         looking_for: "Femme",
-        profile_image: "https://i.ibb.co/qFcxrjjs/charles64.webp",
     })
 
-    await User.create({
-        mail: "charles64@gmail.com",
-        password: "admin1234",
-        profile_id: 9,
+    await Picture.create({
+        url: "https://i.ibb.co/qFcxrjjs/charles64.webp",
+        position: 1,
+        profile_id: 9
     });
+
+    await Interest_Profile.create({
+        interest_id: 9,
+        profile_id: 9
+    })
 
     await Event.create({
         title: "Atelier relaxation et méditation",
@@ -348,20 +471,26 @@ try {
 
 
     await Profile.create({
+        mail: "daniel66@gmail.com",
+        password: "admin1234",
         pseudo: "Daniel66",
         gender: "Homme",
         city: "Bordeaux",
         age: 66,
         description: "Adepte de la nature et des promenades en forêt, je suis aussi passionné de vin et de gastronomie. Je recherche quelqu'un avec qui partager des moments chaleureux.",
         looking_for: "Femme",
-        profile_image: "https://i.ibb.co/zTqGJdDT/daniel66.webp",
     })
 
-    await User.create({
-        mail: "daniel66@gmail.com",
-        password: "admin1234",
-        profile_id: 10,
+    await Picture.create({
+        url: "https://i.ibb.co/zTqGJdDT/daniel66.webp",
+        position: 1,
+        profile_id: 10
     });
+
+    await Interest_Profile.create({
+        interest_id: 10,
+        profile_id: 10
+    })
 
     await Event.create({
         title: "Soirée jeux de société",
@@ -385,20 +514,26 @@ try {
 
 
     await Profile.create({
+        mail: "edouard68@gmail.com",
+        password: "admin1234",
         pseudo: "Edouard68",
         gender: "Homme",
         city: "Nice",
         age: 68,
         description: "J'ai toujours aimé les arts et la culture. Que ce soit une soirée au théâtre ou une discussion sur un roman, je suis toujours prêt à partager.",
         looking_for: "Femme",
-        profile_image: "https://i.ibb.co/JjKpNC0r/edouard68.webp",
     })
 
-    await User.create({
-        mail: "edouard68@gmail.com",
-        password: "admin1234",
-        profile_id: 11,
+    await Picture.create({
+        url: "https://i.ibb.co/JjKpNC0r/edouard68.webp",
+        position: 1,
+        profile_id: 11
     });
+
+    await Interest_Profile.create({
+        interest_id: 11,
+        profile_id: 11
+    })
 
     await Event.create({
         title: "Atelier théâtre d’improvisation",
@@ -422,20 +557,26 @@ try {
 
 
     await Profile.create({
+        mail: "francois70@gmail.com",
+        password: "admin1234",
         pseudo: "François70",
         gender: "Homme",
         city: "Toulouse",
         age: 70,
         description: "Grand-père actif, je suis toujours prêt à faire une partie de pétanque ou à jouer de la guitare. J'aime profiter des petits bonheurs de la vie.",
         looking_for: "Femme",
-        profile_image: "https://i.ibb.co/5gHLX8bs/francois70.webp",
     })
 
-    await User.create({
-        mail: "francois70@gmail.com",
-        password: "admin1234",
-        profile_id: 12,
+    await Picture.create({
+        url: "https://i.ibb.co/5gHLX8bs/francois70.webp",
+        position: 1,
+        profile_id: 12
     });
+
+    await Interest_Profile.create({
+        interest_id: 12,
+        profile_id: 12
+    })
 
     await Event.create({
         title: "Promenade culturelle et découverte de la ville",

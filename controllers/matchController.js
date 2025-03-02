@@ -9,7 +9,7 @@ export const matchController = {
     //Controller pour trouver les matchs qui sont acceptés
     getAllMatch: async (req, res) => {
         //On va récupérer l'id du user
-        const profile_id = req.params.id;
+        const profile_id = req.user.id;
 
         try {
             //On va d'abord rechercher chaque ligne de match_profil qui contient notre id et juste garder l'attribut match_id
@@ -60,7 +60,7 @@ export const matchController = {
 
     //Controlleur pour savoir si l'utilisateur est like ou pas
     createMatch: async (req, res) => {
-        const { user_id, profile_id } = req.query;
+        const profile_id = req.query;
 
         try {
             // 1. Vérifier si un match existe entre les deux profils
@@ -83,21 +83,25 @@ export const matchController = {
                         SELECT 1 
                         FROM "match_profile" mp2
                         WHERE mp2."match_id" = "Match"."id" 
-                        AND mp2."profile_id" = ${user_id}
+                        AND mp2."profile_id" = ${req.user.id}
                     )
                 `)
             });
-            // Si un match existe
+
+            // Si un match existe cela veut dire que l'utilisateur a déjà été liké.
             if (existingMatch) {
+
+                //Donc j'update le match pour mettre la clé like avec la valeur like
                 await Match_Profile.update(
                     { like: 'like' },
                     {
                         where: {
                             match_id: existingMatch.id,
-                            profile_id: user_id
+                            profile_id: req.user.id
                         }
                     }
                 );
+                // Je modifie aussi le match avec comme statue accepté
                 await existingMatch.update({ status: 'accepted' });
 
                 return res.status(200).json({
@@ -115,7 +119,7 @@ export const matchController = {
             await Promise.all([
                 Match_Profile.create({
                     match_id: newMatch.id,
-                    profile_id: user_id,
+                    profile_id: req.user.id,
                     like: 'like'
                 }),
                 Match_Profile.create({
@@ -137,7 +141,6 @@ export const matchController = {
 
     deleteMatch: async (req, res) => {
         const match_id = req.query.match_id;
-        const user_id = req.query.user_id;
 
         try {
 
@@ -147,7 +150,7 @@ export const matchController = {
                 const findLike = await Match_Profile.findOne({
                     where: {
                         match_id: existingMatch.id,
-                        profile_id: user_id
+                        profile_id: req.user.id
                     }
                 });
 

@@ -5,17 +5,17 @@ import Conversation from "./Conversation.js";
 import Interest from "./Interest.js";
 import Match from "./Match.js";
 import Message from "./Message.js";
-import User from "./User.js";
+import Picture from "./Picture.js";
 import Conversation_Profile from "./Conversation_Profile.js";
 import Match_Profile from './Match_Profile.js'
 import Interest_Profile from './Interest_Profile.js'
 
 export default function initAssociations() {
-    // 1. User & Profile (One-to-One)
-    Profile.hasOne(User, {
-        foreignKey: "profile_id"
-    });
-    User.belongsTo(Profile, {
+    // 1. Profile & Picutre (One-to-Many)
+    Profile.hasMany(Picture,{
+        foreignKey: "profile_id",
+    })
+    Picture.belongsTo(Profile, {
         foreignKey: "profile_id"
     });
 

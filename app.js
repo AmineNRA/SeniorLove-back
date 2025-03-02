@@ -1,10 +1,13 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import conversationRouter from './routes/conversationRoute.js';
 import eventRouter from './routes/eventRoute.js';
 import profileRouter from './routes/profileRoute.js';
 import matchRouter from './routes/matchRoute.js';
 import messageRouter from './routes/MessageRoute.js';
+import authRouter from './routes/authRoute.js';
+import reservationRouter from './routes/reservationRoute.js';
 import initAssociations from './models/associations.js';
 
 // Variable d'environnement
@@ -25,14 +28,19 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
+app.use(cookieParser());
+
 // Middleware pour lire du json
 app.use(express.json());
 
+
+app.use(authRouter);
 app.use(conversationRouter);
 app.use(eventRouter);
 app.use(profileRouter);
 app.use(matchRouter);
 app.use(messageRouter);
+app.use(reservationRouter);
 
 // Pour indiquer si le serveur est bien allumé
 app.listen(port, () => {
