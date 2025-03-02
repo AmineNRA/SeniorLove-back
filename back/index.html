@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.6">
     
     
       
@@ -22,7 +22,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.a40c8224.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
       
       
 
@@ -296,15 +296,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#test" class="md-nav__link">
-    <span class="md-ellipsis">
-      Test
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -352,15 +343,6 @@
   <a href="#endpoint-api" class="md-nav__link">
     <span class="md-ellipsis">
       Endpoint API
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#test" class="md-nav__link">
-    <span class="md-ellipsis">
-      Test
     </span>
   </a>
   
@@ -427,38 +409,6 @@ Il y aura une indiquation sur chaque controlleur et qu'est ce qu'il récupère d
 <li>Filtre de distance entre les utilisateurs pour avoir plus de préférences.</li>
 </ul>
 <h2 id="endpoint-api">Endpoint API</h2>
-<p><strong>User:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Requête</th>
-<th>Méthode</th>
-<th>Explication</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>back.seniorlove/user/find</td>
-<td>GET</td>
-<td>Rechercher si l'utilisateur est connu au pas (grace à son mail)</td>
-</tr>
-<tr>
-<td>back.seniorlove/user</td>
-<td>POST</td>
-<td>Authentification de l'utilisateur</td>
-</tr>
-<tr>
-<td>back.seniorlove/user/:id</td>
-<td>PATCH</td>
-<td>Modifier un user</td>
-</tr>
-<tr>
-<td>back.seniorlove/user/:id</td>
-<td>DELETE</td>
-<td>Supprime un user</td>
-</tr>
-</tbody>
-</table>
 <p><strong>Profile:</strong></p>
 <table>
 <thead>
@@ -470,17 +420,17 @@ Il y aura une indiquation sur chaque controlleur et qu'est ce qu'il récupère d
 </thead>
 <tbody>
 <tr>
-<td>back.seniorlove/profile/:id</td>
+<td>back.seniorlove/profile/find</td>
 <td>GET</td>
 <td>Envoi un profil</td>
 </tr>
 <tr>
-<td>back.seniorlove/profile?preference=preference</td>
+<td>back.seniorlove/profiles?preference=preference</td>
 <td>GET</td>
 <td>Filtre profil</td>
 </tr>
 <tr>
-<td>back.seniorlove/profile/:id</td>
+<td>back.seniorlove/profile/</td>
 <td>PATCH</td>
 <td>Modifie un profil</td>
 </tr>
@@ -523,11 +473,6 @@ Il y aura une indiquation sur chaque controlleur et qu'est ce qu'il récupère d
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>back.seniorlove/message/:conversation_id</td>
-<td>GET</td>
-<td>Cherche tous les messages d'une conversation</td>
-</tr>
 <tr>
 <td>back.seniorlove/message</td>
 <td>POST</td>
@@ -593,12 +538,12 @@ Il y aura une indiquation sur chaque controlleur et qu'est ce qu'il récupère d
 </thead>
 <tbody>
 <tr>
-<td>back.seniorlove/reservation</td>
+<td>back.seniorlove/reservation/:event_id</td>
 <td>POST</td>
 <td>Créer une réservation</td>
 </tr>
 <tr>
-<td>back.seniorlove/reservation/:id</td>
+<td>back.seniorlove/reservation/:event_id</td>
 <td>DELETE</td>
 <td>Supprime une réservation</td>
 </tr>
@@ -615,7 +560,7 @@ Il y aura une indiquation sur chaque controlleur et qu'est ce qu'il récupère d
 </thead>
 <tbody>
 <tr>
-<td>back.seniorlove/match/:id</td>
+<td>back.seniorlove/matchs/</td>
 <td>GET</td>
 <td>Trouve les match</td>
 </tr>
@@ -631,70 +576,6 @@ Il y aura une indiquation sur chaque controlleur et qu'est ce qu'il récupère d
 </tr>
 </tbody>
 </table>
-<h2 id="test">Test</h2>
-<p><strong>Test sur les routes pour l'évènement:</strong></p>
-<p>back.seniorlove/event :</p>
-<pre><code class="language-js">Status: 200 OK
-Size: 517 Bytes
-Time: 79 ms
-</code></pre>
-<p>back.seniorlove/event/:id :</p>
-<pre><code class="language-js">Status: 200 OK
-Size: 686 Bytes
-Time: 146 ms
-</code></pre>
-<p>POST back.seniorlove/event :</p>
-<pre><code class="language-js">Status: 201 Created
-Size: 1 Bytes
-Time: 545 ms
-</code></pre>
-<p>PATCH back.seniorlove/event/:id :</p>
-<pre><code class="language-js">Status: 200 OK
-Size: 561 Bytes
-Time: 99 ms
-</code></pre>
-<p>DELETE PATCH back.seniorlove/event :</p>
-<pre><code class="language-js">Status: 200 OK
-Size: 34 Bytes
-Time: 79 ms
-</code></pre>
-<p><strong>Test pour les routes profile:</strong></p>
-<p>back.seniorlove/profile/:id :</p>
-<pre><code class="language-js">Status: 200 OK
-Size: 375 Bytes
-Time: 79 ms
-</code></pre>
-<p>back.seniorlove/profile/ :</p>
-<pre><code class="language-js">Status: 200 OK
-Size: 4.67 KB
-Time: 79 ms
-</code></pre>
-<p>PATCH back.seniorlove/user/:id :</p>
-<pre><code class="language-js">Status: 200 OK
-Size: 375 Bytes
-Time: 45 ms
-</code></pre>
-<p>DELETE back.seniorlove/user/:id :</p>
-<pre><code class="language-js">Status: 200 OK
-Size: 17 Bytes
-Time: 314 ms
-</code></pre>
-<p><strong>Test pour les routes match:</strong></p>
-<p>back.seniorlove/match/:id :</p>
-<pre><code class="language-js">Status: 200 OK
-Size: 441 Bytes
-Time: 80 ms
-</code></pre>
-<p>back.seniorlove/match?profile_id&amp;user_id :</p>
-<pre><code class="language-js">Status: 200 OK
-Size: 125 Bytes
-Time: 36 ms
-</code></pre>
-<p>DELETE back.seniorlove/match/delete?match_id&amp;user_id :</p>
-<pre><code class="language-js">Status: 201 Created
-Size: 43 Bytes
-Time: 73 ms
-</code></pre>
 
 
 
@@ -744,7 +625,7 @@ Time: 73 ms
     <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.5090c770.min.js"></script>
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
       
     
   </body>
