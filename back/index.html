@@ -297,9 +297,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#objets-que-le-back-va-envoyer" class="md-nav__link">
+  <a href="#requete-et-response-de-chaque-route" class="md-nav__link">
     <span class="md-ellipsis">
-      Objets que le back va envoyer
+      Requete et Response de chaque route
     </span>
   </a>
   
@@ -358,9 +358,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#objets-que-le-back-va-envoyer" class="md-nav__link">
+  <a href="#requete-et-response-de-chaque-route" class="md-nav__link">
     <span class="md-ellipsis">
-      Objets que le back va envoyer
+      Requete et Response de chaque route
     </span>
   </a>
   
@@ -438,7 +438,7 @@ Il y aura une indiquation sur chaque controlleur et qu'est ce qu'il récupère d
 </thead>
 <tbody>
 <tr>
-<td>back.seniorlove/profile/find</td>
+<td>back.seniorlove/profile/:profile_id</td>
 <td>GET</td>
 <td>Envoi un profil</td>
 </tr>
@@ -453,7 +453,7 @@ Il y aura une indiquation sur chaque controlleur et qu'est ce qu'il récupère d
 <td>Modifie un profil</td>
 </tr>
 <tr>
-<td>back.seniorlove/profile</td>
+<td>back.seniorlove/profile/</td>
 <td>DELETE</td>
 <td>Supprime un user</td>
 </tr>
@@ -470,9 +470,14 @@ Il y aura une indiquation sur chaque controlleur et qu'est ce qu'il récupère d
 </thead>
 <tbody>
 <tr>
-<td>back.seniorlove/conversation/:profile_id</td>
+<td>back.seniorlove/conversations/</td>
 <td>GET</td>
 <td>Cherche la liste de conversations du user</td>
+</tr>
+<tr>
+<td>back.seniorlove/conversation?profile_id=profile_id</td>
+<td>GET</td>
+<td>Cherche une conversation</td>
 </tr>
 <tr>
 <td>back.senior/love/conversation/:id</td>
@@ -519,7 +524,7 @@ Il y aura une indiquation sur chaque controlleur et qu'est ce qu'il récupère d
 </thead>
 <tbody>
 <tr>
-<td>back.seniorlove/event</td>
+<td>back.seniorlove/events</td>
 <td>GET</td>
 <td>Envoi la liste de tous les evenements</td>
 </tr>
@@ -583,38 +588,359 @@ Il y aura une indiquation sur chaque controlleur et qu'est ce qu'il récupère d
 <td>Trouve les match</td>
 </tr>
 <tr>
-<td>back.seniorlove/match?profile_id&amp;user_id</td>
-<td>GET</td>
+<td>back.seniorlove/match?profile_id</td>
+<td>POST</td>
 <td>Créer un match</td>
 </tr>
 <tr>
-<td>back.seniorlove/match/delete?match_id&amp;user_id</td>
+<td>back.seniorlove/match?match_id=match_id</td>
 <td>DELETE</td>
 <td>Supprime un match</td>
 </tr>
 </tbody>
 </table>
-<h2 id="objets-que-le-back-va-envoyer">Objets que le back va envoyer</h2>
+<h2 id="requete-et-response-de-chaque-route">Requete et Response de chaque route</h2>
 <p><strong>Profile:</strong></p>
-<p><strong>back.seniorlove/profile/find:</strong></p>
-<pre><code class="language-json">id:
+<p><strong>back.seniorlove/profile/:profile_id:</strong></p>
+<p>request:</p>
+<pre><code class="language-json">{
+    profile_id:
+}
+</code></pre>
+<p>response:</p>
+<pre><code class="language-json">{
+id:
 pseudo:
 profile_image:
 age:
 city:
 description:
-interests
+interests:
 like:
+}
 </code></pre>
 <p><strong>back.seniorlove/profiles?preference=preference:</strong></p>
-<pre><code class="language-json">id:
+<p>request:</p>
+<pre><code class="language-json">{
+    pseudo:
+    city:
+    gender:
+    age:
+}
+</code></pre>
+<p>(filtre donc chaque clé est optionnel)</p>
+<p>response:</p>
+<pre><code class="language-json">{
+id:
 pseudo:
 age:
 image_profile:
+}
 </code></pre>
 <p><strong>back.seniorlove/profile/:</strong></p>
-<pre><code class="language-json">bool: true
+<p>request:</p>
+<pre><code class="language-json">{
+    pseudo:
+profile_image:
+age:
+city:
+description:
+interests:
+}
 </code></pre>
+<p>(patch donc chaque info est optionnel)</p>
+<p>response:</p>
+<pre><code class="language-json">{
+bool: true
+}
+</code></pre>
+<p><strong>back.seniorlove/profile/:</strong></p>
+<p>response:</p>
+<pre><code class="language-json">{
+    bool:true
+}
+</code></pre>
+<p><strong>Conversation:</strong></p>
+<p><strong>back.seniorlove/conversations/:</strong></p>
+<p>response:</p>
+<pre><code class="language-json">{
+id:
+pseudo:
+profile_image
+lastMessage
+}
+</code></pre>
+<p><strong>back.seniorlove/conversation?profile_id=profile_id:</strong></p>
+<p>request:</p>
+<pre><code class="language-json">{
+    profile_id:
+}
+</code></pre>
+<p>response:</p>
+<pre><code class="language-json">{
+id:
+Messages:[
+    {
+        content:
+        status:
+        created_at:
+        id_profile:
+        pseudo:
+        profile_image
+    }
+]
+}
+</code></pre>
+<p><strong>back.senior/love/conversation/:id:</strong></p>
+<p>request:</p>
+<pre><code class="language-json">{
+    id:
+}
+</code></pre>
+<p>response:</p>
+<pre><code class="language-json">{
+bool: true
+}
+</code></pre>
+<p><strong>Message:</strong></p>
+<p><strong>back.seniorlove/message:</strong></p>
+<p>request:</p>
+<pre><code class="language-json">{
+    content:
+    conversation_id:
+}
+</code></pre>
+<p>response:</p>
+<pre><code class="language-json">{
+status:
+id:
+content:
+profile_id:
+conversation_id:
+updatedAt:
+createdAt:
+}
+</code></pre>
+<p><strong>back.seniorlove/message/:id:</strong></p>
+<p>request:</p>
+<pre><code class="language-json">{
+    content:
+}
+</code></pre>
+<p>response:</p>
+<pre><code class="language-json">{
+bool:
+}
+</code></pre>
+<p><strong>back.seniorlove/message/:id:</strong></p>
+<p>request:</p>
+<pre><code class="language-json">{
+    id:
+}
+</code></pre>
+<p>response:</p>
+<pre><code class="language-json">{
+message:
+}
+</code></pre>
+<p><strong>Event:</strong></p>
+<p><strong>back.seniorlove/events:</strong></p>
+<p>request:</p>
+<pre><code class="language-json">{
+    tag?:
+    date?:
+}
+</code></pre>
+<p>response:</p>
+<pre><code class="language-json">[
+    {
+id:
+title:
+tag:
+description:
+thumbnail_image:
+}
+]
+</code></pre>
+<p><strong>back.seniorlove/event/:id:</strong></p>
+<p>request:</p>
+<pre><code class="language-json">{
+    id:
+}
+</code></pre>
+<p>response:</p>
+<pre><code class="language-json">[
+    {
+id:
+title:
+tag:
+description:
+date:
+time:
+street:
+city:
+postal_code:
+thumbnail_image:
+full_image:
+max_participant:
+status:
+createdAt:
+updatedAt:
+profile_id:
+participants:[{}]
+creator:{}
+}
+]
+</code></pre>
+<p><strong>back.seniorlove/event:</strong></p>
+<p>request:</p>
+<pre><code class="language-json">{
+    title:
+    tag:
+    description:
+    date:
+    time:
+    street:
+    city:
+    postal_code:
+    full_image:
+    max_participant:
+}
+</code></pre>
+<p>response:</p>
+<pre><code class="language-json">
+{
+id:
+}
+
+</code></pre>
+<p><strong>back.seniorlove/event/:id:</strong></p>
+<p>request:</p>
+<pre><code class="language-json">{
+    title?:
+    tag?:
+    description?:
+    date?:
+    time?:
+    street?:
+    city?:
+    postal_code?:
+    full_image?:
+    max_participant?:
+}
+</code></pre>
+<p>response:</p>
+<pre><code class="language-json">
+    {
+id:
+title:
+tag:
+description:
+date:
+time:
+street:
+city:
+postal_code:
+thumbnail_image:
+full_image:
+max_participant:
+status:
+createdAt:
+updatedAt:
+profile_id:
+participants:[{}]
+creator:{}
+}
+</code></pre>
+<p><strong>back.seniorlove/event/:id:</strong></p>
+<p>request:</p>
+<pre><code class="language-json">{
+    id:
+}
+</code></pre>
+<p>response:</p>
+<pre><code class="language-json">
+{
+    message:
+}
+</code></pre>
+<p><strong>Reservation:</strong></p>
+<p><strong>back.seniorlove/reservation/:event_id</strong></p>
+<p>request:</p>
+<pre><code class="language-json">{
+}
+</code></pre>
+<p>response:</p>
+<pre><code class="language-json">
+{
+    sucess:
+    message:
+}
+
+**back.seniorlove/reservation/:event_id**
+
+request:
+
+```json
+{
+}
+</code></pre>
+<p>response:</p>
+<pre><code class="language-json">
+{
+    sucess:
+    message:
+}
+
+**Match:**
+
+**back.seniorlove/matchs**
+
+request:
+
+```json
+{
+}
+</code></pre>
+<p>response:</p>
+<pre><code class="language-json">
+{
+    id:
+    status:
+    createdAt:
+    updatedAt:
+    matched_profiles:[{}]
+}
+
+**back.seniorlove/match?profile_id:**
+
+request:
+
+```json
+{
+    profile_id:
+}
+</code></pre>
+<p>response:</p>
+<pre><code class="language-json">
+{
+    message:
+}
+
+**back.seniorlove/match?match_id=match_id:**
+
+request:
+
+```json
+{
+    match_id:
+}
+</code></pre>
+<p>response:</p>
+<p>```json</p>
+<p>{
+    message:
+}</p>
 
 
 
