@@ -2,6 +2,7 @@ import { Op } from 'sequelize';
 import Match from '../models/Match.js'
 import Match_Profile from '../models/Match_Profile.js';
 import Profile from '../models/Profile.js';
+import Picture from '../models/Picture.js';
 import sequelize from '../config/database.js';
 
 export const matchController = {
@@ -39,7 +40,11 @@ export const matchController = {
                         where: {
                             id: { [Op.ne]: profile_id }
                         },
-                        attributes: ['pseudo', 'age', 'profile_image'],
+                        attributes: ['pseudo', 'age'],
+                        include: {
+                            model: Picture,
+                            attributes: ['url']
+                        },
                         through: {
                             attributes: []
                         }
@@ -58,9 +63,9 @@ export const matchController = {
         }
     },
 
-    //Controlleur pour savoir si l'utilisateur est like ou pas
+    //Controlleur pour créer un like et/ou un match
     createMatch: async (req, res) => {
-        const profile_id = req.query;
+        const { profile_id } = req.query;
 
         try {
             // 1. Vérifier si un match existe entre les deux profils
@@ -68,7 +73,11 @@ export const matchController = {
                 include: {
                     model: Profile,
                     as: 'matched_profiles',
-                    attributes: ['id', 'pseudo', 'profile_image'],
+                    attributes: ['id', 'pseudo'],
+                    include: {
+                        model: Picture,
+                        attributes: ['url'],
+                    },
                     through: { attributes: ['like'] }
                 },
                 where: sequelize.literal(`
@@ -76,14 +85,14 @@ export const matchController = {
                         SELECT 1 
                         FROM "match_profile" mp
                         WHERE mp."match_id" = "Match"."id" 
-                        AND mp."profile_id" = ${profile_id}
+                        AND mp."profile_id" = '${profile_id}'
                     )
                     AND
                     EXISTS (
                         SELECT 1 
                         FROM "match_profile" mp2
                         WHERE mp2."match_id" = "Match"."id" 
-                        AND mp2."profile_id" = ${req.user.id}
+                        AND mp2."profile_id" = '${req.user.id}'
                     )
                 `)
             });

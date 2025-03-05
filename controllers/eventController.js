@@ -1,16 +1,24 @@
 import Event from "../models/Event.js";
 import Profile from "../models/Profile.js"
 import Reservation from "../models/Reservation.js"
+import Picture from "../models/Picture.js";
 import imagesServices from "../services/imagesServices.js";
-import sharp from "sharp";
+import { Op } from "sequelize";
 
 export const eventController = {
 
     //Controlleur qui envoi la liste de tous les evenements
     getAllEvent: async (req, res) => {
+        let tag = req.query.tag ?? { [Op.not]: null };
+        let date = req.query.date ?? { [Op.not]: null };
+
         try {
             const event = await Event.findAll({
-                attributes: ['id', 'title', 'tag', 'description', 'thumbnail_image']
+                attributes: ['id', 'title', 'tag', 'description', 'thumbnail_image'],
+                where: {
+                    tag: tag,
+                    date: date
+                }
             })
             event.length > 0 ?
                 res.status(200).json(event)
@@ -33,10 +41,13 @@ export const eventController = {
                 include: [{
                     model: Profile,
                     as: "participants",
-                    attributes: ['pseudo', 'profile_image'],
+                    attributes: ['pseudo'],
                     through: {
                         attributes: []
-                    }
+                    },
+                    include: {
+                        model: Picture,
+                    },
                 },
                 {
                     model: Profile,
@@ -62,6 +73,7 @@ export const eventController = {
 
         //Récupération des infos envoyé du front
         const dataEvent = req.body
+        dataEvent.profile_id = req.query.id
 
         try {
 

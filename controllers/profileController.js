@@ -76,7 +76,6 @@ export const profileController = {
 
     //Controlleur de recherche de profile
     filterProfile: async (req, res) => {
-        console.log(req.user.id)
         //Avec les paramètres de requete que nous envoie le front nous allons pouvoir les vérifier et les adapter en conséquence
         let pseudo = req.query.pseudo ? { [Op.substring]: req.query.pseudo } : { [Op.not]: null };
         let city = req.query.city ?? { [Op.not]: null };
@@ -98,17 +97,16 @@ export const profileController = {
                     model: Picture,
                 }],
             })
-
             //Comme précédemment je vais formater le résultat pour envoyer que ce que le front a besoin.
             const formattedProfiles = filteredProfile.map(profile => ({
                 id: profile.id,
                 pseudo: profile.pseudo,
                 age: profile.age,
-                image_profile: profile.Pictures[0].first
+                image_profile: profile.Pictures[0].url
             }))
 
             formattedProfiles.length > 0 ?
-                res.status(200).json(formattedProfiles)
+                res.status(200).json(formattedProfilesw)
                 :
                 res.status(404).json({ message: 'Aucun profil trouvé' })
         } catch (error) {

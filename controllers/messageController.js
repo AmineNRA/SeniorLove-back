@@ -11,7 +11,7 @@ export const messageController = {
 
         try {
             //On va vérifie si conversation n'est pas égale à 0
-            if (dataMessage.conversation_id != 0) {
+            if (dataMessage.conversation_id != 0 && dataMessage.conversation_id != null) {
 
                 //Si c'est le cas nous allons créer le message tout simplement
                 const newMessage = await Message.create({
@@ -60,7 +60,7 @@ export const messageController = {
             const message = await Message.findByPk(id);
             if (message) {
                 const updateMessage = message.update(dataMessage);
-                res.status(200).json(updateMessage);
+                res.status(200).json({ bool: true });
             }
             else (
                 res.status(404).json({ message: "Message introuvable" })

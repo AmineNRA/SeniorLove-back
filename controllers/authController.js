@@ -45,7 +45,6 @@ export const authController = {
                     process.env.JWT_SECRET,
                     { expiresIn: '7d' }
                 )
-                console.log(req.user)
                 res.cookie("jwtToken", accessToken, {
                     httpOnly: true,
                     secure: process.env.NODE_ENV === "production",

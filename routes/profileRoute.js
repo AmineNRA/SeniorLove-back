@@ -5,7 +5,7 @@ import authMiddleware from "../middlewares/authMiddleware.js"
 
 const profileRouter = express.Router();
 
-profileRouter.get('/profile/find', authMiddleware, profileController.getProfile);
+profileRouter.get('/profile/:profile_id', authMiddleware, profileController.getProfile);
 profileRouter.get('/profiles', authMiddleware, profileController.filterProfile);
 profileRouter.patch('/profile/', authMiddleware, profileController.updateProfile);
 profileRouter.delete('/profile/', profileController.deleteProfile);
