@@ -135,7 +135,7 @@ export const conversationController = {
             const conversation = await Conversation.findByPk(id);
             if (conversation) {
                 conversation.destroy();
-                res.status(200).json({ bool: true });
+                res.status(200).json({ success: true });
             }
             else {
                 res.status(404).json({ message: "Impossible de supprimer la conversation" })

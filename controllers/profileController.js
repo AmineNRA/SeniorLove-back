@@ -12,7 +12,7 @@ export const profileController = {
 
     //Controller pour afficher le profil que le user consulte avec toutes les infos.
     getProfile: async (req, res) => {
-        const profile_id = req.query.profile_id ? req.query.profile_id : req.user.id;
+        const profile_id = req.params.profile_id === 0 ? req.params.profile_id : req.user.id;
         const user_id = req.user.id;
         try {
 
@@ -23,13 +23,14 @@ export const profileController = {
                     profile_id: user_id,
                     match_id: {
                         [Op.in]: sequelize.literal(`(
-                            SELECT match_id
-                            FROM match_profile
-                            WHERE profile_id = ${profile_id}
-                            )`)
+                            SELECT "match_id"
+                            FROM "match_profile"
+                            WHERE "profile_id" = '${profile_id}'
+                            AND "match_id" IS NOT NULL)`)
                     }
                 }
             })
+
 
             // Récupération des infos du profil consulté
             const profile = await Profile.findOne({
@@ -56,7 +57,7 @@ export const profileController = {
             const formattedProfile = {
                 id: profile.id,
                 pseudo: profile.pseudo,
-                profile_image: profile.Pictures[0].first,
+                pictures: profile.Pictures[0].first,
                 age: profile.age,
                 looking_for: profile.looking_for,
                 city: profile.city,
@@ -77,10 +78,18 @@ export const profileController = {
     //Controlleur de recherche de profile
     filterProfile: async (req, res) => {
         //Avec les paramètres de requete que nous envoie le front nous allons pouvoir les vérifier et les adapter en conséquence
-        let pseudo = req.query.pseudo ? { [Op.substring]: req.query.pseudo } : { [Op.not]: null };
-        let city = req.query.city ?? { [Op.not]: null };
-        let gender = req.query.gender ?? { [Op.not]: null };
-        let age = req.query.age ? { [Op.between]: req.query.age.split(',').map(Number) } : { [Op.not]: null };
+        let pseudo = req.query.pseudo === 'all' ? { [Op.not]: null } : { [Op.iLike]: req.query.pseudo };
+        let city = req.query.city === "all" ? { [Op.not]: null } : { [Op.iLike]: req.query.city };
+        let gender = req.query.gender === "all" ? { [Op.not]: null } : { [Op.eq]: req.query.gender };
+        const { age } = req.query;
+
+        let ageCondition;
+        if (age === "all") {
+            ageCondition = { [Op.not]: null };
+        } else {
+            const [startYear, endYear] = age.split(',');
+            ageCondition = { [Op.between]: [startYear, endYear] };
+        }
 
         try {
 
@@ -91,7 +100,7 @@ export const profileController = {
                     pseudo: pseudo,
                     city: city,
                     gender: gender,
-                    age: age
+                    age: ageCondition
                 },
                 include: [{
                     model: Picture,
@@ -102,11 +111,11 @@ export const profileController = {
                 id: profile.id,
                 pseudo: profile.pseudo,
                 age: profile.age,
-                image_profile: profile.Pictures[0].url
+                pictures: profile.Pictures[0].url
             }))
 
             formattedProfiles.length > 0 ?
-                res.status(200).json(formattedProfilesw)
+                res.status(200).json(formattedProfiles)
                 :
                 res.status(404).json({ message: 'Aucun profil trouvé' })
         } catch (error) {
@@ -119,7 +128,6 @@ export const profileController = {
     updateProfile: async (req, res) => {
         const id = req.user.id
         const profileData = req.body
-
         try {
 
             // On cherche le profil de l'utilisateur
@@ -146,7 +154,7 @@ export const profileController = {
 
 
     deleteProfile: async (req, res) => {
-        const id = req.user.id;
+        const id = 2;
         try {
             //Suppression du profil
             await Profile.destroy({

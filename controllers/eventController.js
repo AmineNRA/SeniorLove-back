@@ -9,8 +9,8 @@ export const eventController = {
 
     //Controlleur qui envoi la liste de tous les evenements
     getAllEvent: async (req, res) => {
-        let tag = req.query.tag ?? { [Op.not]: null };
-        let date = req.query.date ?? { [Op.not]: null };
+        let tag = req.query.tag === 'all' ? { [Op.not]: null } : { [Op.eq]: req.query.tag };
+        let date = req.query.date === 'all' ? { [Op.not]: null } : req.query.date;
 
         try {
             const event = await Event.findAll({
@@ -34,7 +34,7 @@ export const eventController = {
     getEvent: async (req, res) => {
         const event_id = req.params.id
         try {
-            const oneEvent = await Event.findOne({
+            const event = await Event.findOne({
                 where: {
                     id: event_id
                 },
@@ -56,11 +56,33 @@ export const eventController = {
                 }
                 ]
             })
-            oneEvent ?
-                res.status(200).json(oneEvent)
-                :
-                res.status(404).json({ message: 'Aucun évènement trouvé' })
 
+            if (event) {
+
+                const formattedEvent = {
+                    id: event.id,
+                    title: event.title,
+                    tag: event.tag,
+                    description: event.description,
+                    date: event.date,
+                    time: event.time,
+                    street: event.street,
+                    city: event.city,
+                    postal_code: event.postal_code,
+                    full_image: event.full_image,
+                    max_participant: event.max_participant,
+                    participants: event.participants.map(participant => ({
+                        pseudo: participant.pseudo,
+                        picture: participant.Pictures.length > 0 ? participant.Pictures[0].url : null
+                    })),
+                    creator: event.creator.pseudo
+                }
+
+                res.status(200).json(formattedEvent)
+            }
+            else {
+                res.status(404).json({ message: 'Aucun évènement trouvé' })
+            }
 
         } catch (error) {
             console.log(error.message);
@@ -97,10 +119,11 @@ export const eventController = {
             })
 
             newEvent ?
-                //Juste besoin d'envoyer l'id pour que le front navigue directement sur la page de l'evenement
+
                 res.status(201).json(newEvent.id)
                 :
                 res.status(400).json({ message: "Une erreur est survenu lors de la création de l'évènement" })
+
         } catch (error) {
             res.status(500).json({ error: error.message })
         }
@@ -128,7 +151,7 @@ export const eventController = {
             const event = await Event.findByPk(id);
             if (event) {
                 const destroyedEvent = await event.destroy();
-                res.status(200).json({ message: 'Evènement supprimé' });
+                res.status(200).json({ success: true });
             }
             else {
                 res.status(404).json({ message: 'Aucun évènement trouvé' });

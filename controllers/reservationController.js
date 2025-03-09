@@ -8,7 +8,7 @@ export const reservationController = {
         try {
             const event = await Event.findByPk(event_id);
             if (!event) {
-                return res.status(404).json({ success: false, message: "Événement introuvable." });
+                return res.status(404).json({ success: false });
             }
 
             const reservation = await Reservation.create({
@@ -17,7 +17,7 @@ export const reservationController = {
             });
 
             if (reservation) {
-                return res.status(201).json({ success: true, message: "Réservation créée avec succès." });
+                return res.status(201).json({ success: true });
             }
 
         } catch (error) {
@@ -37,10 +37,10 @@ export const reservationController = {
             });
 
             if (deleteReservation === 0) {
-                return res.status(404).json({ success: false, message: "Réservation introuvable." });
+                return res.status(404).json({ success: false });
             }
 
-            return res.status(200).json({ success: true, message: "Réservation supprimée avec succès." });
+            return res.status(200).json({ success: true });
 
         } catch (error) {
             res.status(500).json({ success: false, error: error.message });

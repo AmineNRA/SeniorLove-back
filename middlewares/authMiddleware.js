@@ -4,6 +4,7 @@ export default function userVerification(req, res, next) {
     try {
 
         const jwtToken = req.cookies["jwtToken"];
+        console.log(req.cookies)
         if (!jwtToken) {
             return res.status(401).json({ message: "Non autorisé" })
         }

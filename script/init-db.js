@@ -79,7 +79,7 @@ try {
         pseudo: "Alice60",
         gender: "Femme",
         city: "Lille",
-        age: 60,
+        age: new Date('1964-02-25'),
         description: "Amoureuse de la lecture et des balades en pleine nature, je recherche quelqu'un pour partager des moments paisibles et enrichissants.",
         looking_for: "Homme",
     })
@@ -117,7 +117,7 @@ try {
         pseudo: "Brigitte62",
         gender: "Femme",
         city: "Strasbourg",
-        age: 62,
+        age: new Date('1962-03-12'),
         description: "Artiste dans l'âme, je passe mon temps libre à peindre ou à visiter des galeries. Je suis une personne douce et créative.",
         looking_for: "Homme",
     })
@@ -165,7 +165,7 @@ try {
         pseudo: "Claudine64",
         gender: "Femme",
         city: "Rennes",
-        age: 64,
+        age: new Date('1960-02-30'),
         description: "Passionnée de cuisine et de danse, j'adore organiser des dîners et des soirées animées. La joie de vivre est ma devise.",
         looking_for: "Homme",
     })
@@ -208,7 +208,7 @@ try {
         pseudo: "Danielle66",
         gender: "Femme",
         city: "Dijon",
-        age: 66,
+        age: new Date('1958-10-01'),
         description: "Passionnée par la couture et le crochet, je suis une personne calme et attentionnée. Je cherche une personne pour partager des discussions profondes et sincères.",
         looking_for: "Homme",
     })
@@ -251,7 +251,7 @@ try {
         pseudo: "Evelyne68",
         gender: "Femme",
         city: "Nantes",
-        age: 68,
+        age: new Date('1956-11-05'),
         description: "Fan de théâtre et de chant, j'adore la scène et les arts vivants. Je recherche une personne avec qui vivre des moments culturels intenses.",
         looking_for: "Homme",
     })
@@ -295,7 +295,7 @@ try {
         pseudo: "Françoise70",
         gender: "Femme",
         city: "Montpellier",
-        age: 70,
+        age: new Date('1954-04-15'),
         description: "Toujours en quête d'aventure, je suis passionnée de voyage et de danse. J'aime découvrir de nouveaux horizons et partager ma joie de vivre.",
         looking_for: "Homme",
     })
@@ -338,7 +338,7 @@ try {
         pseudo: "Albert60",
         gender: "Homme",
         city: "Lyon",
-        age: 60,
+        age: new Date('1964-09-26'),
         description: "Passionné par l'escalade, je suis ce qu'on peut appeler un épicurien. J'aime partager des moments simples autour d'un bon repas ou d'une balade au grand air.",
         looking_for: "Femme",
     })
@@ -381,7 +381,7 @@ try {
         pseudo: "Bernard62",
         gender: "Homme",
         city: "Marseille",
-        age: 62,
+        age: new Date('1962-05-26'),
         description: "Ancien marin, j'aime les histoires de voyages et d'aventures. Je suis quelqu'un de calme et de réfléchi, et je cherche une compagne pour partager les plaisirs simples de la vie.",
         looking_for: "Femme",
     })
@@ -433,7 +433,7 @@ try {
         pseudo: "Charles64",
         gender: "Homme",
         city: "Paris",
-        age: 64,
+        age: new Date('1960-10-30'),
         description: "Professeur à la retraite, je suis passionné par l'histoire et les musées. J'aime également les promenades dans les parcs et découvrir de nouvelles expositions.",
         looking_for: "Femme",
     })
@@ -476,7 +476,7 @@ try {
         pseudo: "Daniel66",
         gender: "Homme",
         city: "Bordeaux",
-        age: 66,
+        age: new Date('1958-03-29'),
         description: "Adepte de la nature et des promenades en forêt, je suis aussi passionné de vin et de gastronomie. Je recherche quelqu'un avec qui partager des moments chaleureux.",
         looking_for: "Femme",
     })
@@ -519,7 +519,7 @@ try {
         pseudo: "Edouard68",
         gender: "Homme",
         city: "Nice",
-        age: 68,
+        age: new Date('1956-06-25'),
         description: "J'ai toujours aimé les arts et la culture. Que ce soit une soirée au théâtre ou une discussion sur un roman, je suis toujours prêt à partager.",
         looking_for: "Femme",
     })
@@ -562,7 +562,7 @@ try {
         pseudo: "François70",
         gender: "Homme",
         city: "Toulouse",
-        age: 70,
+        age: new Date('1954-06-14'),
         description: "Grand-père actif, je suis toujours prêt à faire une partie de pétanque ou à jouer de la guitare. J'aime profiter des petits bonheurs de la vie.",
         looking_for: "Femme",
     })

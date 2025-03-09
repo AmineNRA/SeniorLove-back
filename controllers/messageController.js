@@ -60,7 +60,7 @@ export const messageController = {
             const message = await Message.findByPk(id);
             if (message) {
                 const updateMessage = message.update(dataMessage);
-                res.status(200).json({ bool: true });
+                res.status(200).json({ success: true });
             }
             else (
                 res.status(404).json({ message: "Message introuvable" })
@@ -77,7 +77,7 @@ export const messageController = {
             const message = await Message.findByPk(id);
             if (message) {
                 const deleteMessage = message.destroy()
-                res.status(200).json({ message: "Message supprimé" })
+                res.status(200).json({ success: true })
             }
             else {
                 res.status(400).json({ message: "Erreur lors de la suppression du message" })

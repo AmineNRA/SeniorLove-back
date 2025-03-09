@@ -1,6 +1,7 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import cors from "cors";
 import conversationRouter from './routes/conversationRoute.js';
 import eventRouter from './routes/eventRoute.js';
 import profileRouter from './routes/profileRoute.js';
@@ -29,6 +30,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.use(cookieParser());
+
+const corsOptions = {
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+};
+
+app.use(cors(corsOptions));
 
 // Middleware pour lire du json
 app.use(express.json());

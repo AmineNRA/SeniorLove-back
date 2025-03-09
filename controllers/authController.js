@@ -53,13 +53,11 @@ export const authController = {
                 });
 
                 res.status(200).json({
-                    id: foundProfile.id,
-                    accessToken,
-                    refreshToken
+                    success: true
                 })
             }
             else {
-                res.status(401).json({ message: 'Utilisateur non trouvé' })
+                res.status(401).json({ success: true })
             }
         }
         catch (error) {
@@ -74,7 +72,7 @@ export const authController = {
             sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax"
         });
 
-        return res.status(200).json({ message: "Déconnecté avec succès" });
+        return res.status(200).json({ success: true });
 
     }
 

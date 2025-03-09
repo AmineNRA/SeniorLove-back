@@ -49,7 +49,7 @@ Profile.init({
         }
     },
     age: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DATEONLY
     },
     gender: {
         type: DataTypes.ENUM('Homme', 'Femme', 'Non précisé')
@@ -93,9 +93,9 @@ Profile.init({
     }
 );
 
-Profile.beforeCreate(async (user) => {
-    const hash = await bcrypt.hash(user.password, 10)
-    user.password = hash
+Profile.beforeCreate(async (profile) => {
+    const hash = await bcrypt.hash(profile.password, 10)
+    profile.password = hash
 });
 
 Profile.beforeValidate(async (profile) => {
