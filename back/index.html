@@ -388,7 +388,7 @@ Il y aura une indiquation sur chaque controlleur et qu'est ce qu'il récupère d
 <h2 id="liste-pages-et-besoins">Liste pages et besoins</h2>
 <p><strong>Voici une liste des pages présentes sur notre front et leur besoin en terme de données:</strong></p>
 <ul>
-<li>Page d'accueil : Le front nous envoie un email on doit vérifier et répondre à notre front avec un booléan.</li>
+<li>Page d'accueil : Le front nous envoie un email on doit vérifier et répondre à notre front avec un successéan.</li>
 <li>Connexion : Loggin du user, vérification du mdp.</li>
 <li>Inscription : Respect des règles input établis &gt; Création d'un user &gt; Création d'un profile &gt; Répondre au front par le profile_id de l'utilisateur.</li>
 <li>Profile : Envoi d'un id de la part du front &gt; Recherche dans la db &gt; Envoi du profile qui correspond à l'id.</li>
@@ -404,8 +404,8 @@ Il y aura une indiquation sur chaque controlleur et qu'est ce qu'il récupère d
 <p><strong>CTA:</strong></p>
 <p><strong>Autre profile :</strong></p>
 <ul>
-<li>Envoi d'un id profile et d'un id du profile liké &gt; Création du match &gt; Création des deux éléments dans la table de liaison match_profile avec le status like pour l'id de l'utilisateur qui a like et le status pending pour l'autre utilisateur &gt; Réponse d'un booléan au front pour dire que le profil a été liké.</li>
-<li>Envoi de l'id profile et d'un autre profile pour ouvrir une conversation &gt; Recheche des deux éléments qui ont l'un des deux id profile et le même id_conversation &gt; Si aucun élément envoi d'un booléan false au front avec les informations ( pseudo, profile_image ) de l'autre id.</li>
+<li>Envoi d'un id profile et d'un id du profile liké &gt; Création du match &gt; Création des deux éléments dans la table de liaison match_profile avec le status like pour l'id de l'utilisateur qui a like et le status pending pour l'autre utilisateur &gt; Réponse d'un successéan au front pour dire que le profil a été liké.</li>
+<li>Envoi de l'id profile et d'un autre profile pour ouvrir une conversation &gt; Recheche des deux éléments qui ont l'un des deux id profile et le même id_conversation &gt; Si aucun élément envoi d'un successéan false au front avec les informations ( pseudo, profile_image ) de l'autre id.</li>
 </ul>
 <p><strong>Profile :</strong></p>
 <ul>
@@ -641,7 +641,7 @@ image_profile:
 <p>request:</p>
 <pre><code class="language-json">{
     pseudo:
-profile_image:
+pictures:[]
 age:
 city:
 description:
@@ -651,13 +651,13 @@ interests:
 <p>(patch donc chaque info est optionnel)</p>
 <p>response:</p>
 <pre><code class="language-json">{
-bool: true
+success: true
 }
 </code></pre>
 <p><strong>back.seniorlove/profile/:</strong></p>
 <p>response:</p>
 <pre><code class="language-json">{
-    bool:true
+    success:true
 }
 </code></pre>
 <p><strong>Conversation:</strong></p>
@@ -699,7 +699,7 @@ Messages:[
 </code></pre>
 <p>response:</p>
 <pre><code class="language-json">{
-bool: true
+success: true
 }
 </code></pre>
 <p><strong>Message:</strong></p>
@@ -729,7 +729,7 @@ createdAt:
 </code></pre>
 <p>response:</p>
 <pre><code class="language-json">{
-bool:
+success:true
 }
 </code></pre>
 <p><strong>back.seniorlove/message/:id:</strong></p>
@@ -740,7 +740,7 @@ bool:
 </code></pre>
 <p>response:</p>
 <pre><code class="language-json">{
-message:
+success:true
 }
 </code></pre>
 <p><strong>Event:</strong></p>
@@ -861,7 +861,7 @@ creator:{}
 <p>response:</p>
 <pre><code class="language-json">
 {
-    message:
+    success:
 }
 </code></pre>
 <p><strong>Reservation:</strong></p>
@@ -874,7 +874,6 @@ creator:{}
 <pre><code class="language-json">
 {
     sucess:
-    message:
 }
 </code></pre>
 <p><strong>back.seniorlove/reservation/:event_id</strong></p>
@@ -886,7 +885,6 @@ creator:{}
 <pre><code class="language-json">
 {
     sucess:
-    message:
 }
 </code></pre>
 <p><strong>Match:</strong></p>
