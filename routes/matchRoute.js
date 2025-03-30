@@ -6,6 +6,6 @@ const matchRouter = express.Router();
 
 matchRouter.get('/matchs/', authMiddleware, matchController.getAllMatch);
 matchRouter.post('/match', authMiddleware, matchController.createMatch);
-matchRouter.delete('/match/', authMiddleware, matchController.deleteMatch);
+matchRouter.delete('/match', authMiddleware, matchController.deleteMatch);
 
 export default matchRouter;

@@ -1,14 +1,35 @@
 import Profile from '../models/Profile.js';
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
+import Interest_Profile from '../models/Interest_Profile.js';
+import Picture from '../models/Picture.js';
+import imagesServices from '../services/imagesServices.js';
+
 
 export const authController = {
 
     register: async (req, res) => {
         const profileData = req.body
         try {
+
             const profile = await Profile.create(profileData)
-            res.status(201).json({ message: 'Utilisateur créé !' })
+            if (profile) {
+                if (profileData.pictures.length > 0) {
+                    await imagesServices(profileData.pictures, 'profile', profile.id)
+                }
+                console.log(profileData.interests)
+                if (profileData.interests.length > 0) {
+                    await profileData.interests.map((interest) => {
+                        Interest_Profile.create({ interest_id: interest.id, profile_id: profile.id })
+                    })
+                }
+                res.status(201).json({ succes: true })
+            }
+            else {
+                res.status(400).json({ succes: false })
+            }
+
+
         }
         catch (error) {
             res.status(500).json({ error: error.message })
@@ -57,7 +78,7 @@ export const authController = {
                 })
             }
             else {
-                res.status(401).json({ success: true })
+                res.status(200).json({ success: false })
             }
         }
         catch (error) {

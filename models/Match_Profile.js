@@ -8,7 +8,7 @@ Match_Profile.init({
         type: DataTypes.INTEGER,
         primaryKey: true,
         references: {
-            model: 'match',
+            model: "match",
             key: 'id'
         }
     },
@@ -16,18 +16,23 @@ Match_Profile.init({
         type: DataTypes.INTEGER,
         primaryKey: true,
         references: {
-            model: 'profile',
+            model: "profile",
             key: 'id'
         }
     },
     like: {
-        type: DataTypes.ENUM('pending', 'like')
+        type: DataTypes.ENUM('pending', 'like'),
+        allowNull: false,
+        defaultValue: 'pending'
     }
 },
     {
         sequelize,
         modelName: 'Match_Profile',
-        tableName: 'match_profile'
+        tableName: 'match_profile',
+        timestamps: true,
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
     });
 
 export default Match_Profile;

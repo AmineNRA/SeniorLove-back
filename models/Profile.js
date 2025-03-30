@@ -52,10 +52,10 @@ Profile.init({
         type: DataTypes.DATEONLY
     },
     gender: {
-        type: DataTypes.ENUM('Homme', 'Femme', 'Non précisé')
+        type: DataTypes.ENUM('Homme', 'Femme', 'Non genré')
     },
     looking_for: {
-        type: DataTypes.ENUM('Homme', 'Femme', 'Amitié'),
+        type: DataTypes.ENUM('Je ne sais pas', 'Amour', 'Amitié'),
     },
     city: {
         type: DataTypes.STRING,

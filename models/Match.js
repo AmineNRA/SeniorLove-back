@@ -12,12 +12,14 @@ Match.init({
     status: {
         type: DataTypes.ENUM('pending', 'accepted', 'rejected', 'deleted'),
         defaultValue: 'pending'
-    },
+    }
 }, {
     sequelize,
     modelName: 'Match',
-    tableName: 'match'
+    tableName: 'match',
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
 });
-
 
 export default Match;

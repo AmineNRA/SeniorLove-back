@@ -12,7 +12,7 @@ export const profileController = {
 
     //Controller pour afficher le profil que le user consulte avec toutes les infos.
     getProfile: async (req, res) => {
-        const profile_id = req.params.profile_id === 0 ? req.params.profile_id : req.user.id;
+        const profile_id = req.params.profile_id === '0' ? req.user.id : req.params.profile_id;
         const user_id = req.user.id;
         try {
 
@@ -50,20 +50,20 @@ export const profileController = {
                 }
                 ]
             });
-
+            console.log(profile.Pictures[0])
             const interest = await interestServices(profile_id)
 
             // Nous allons formaté l'objet que nous allons envoyer au front. Nous utilisons les opération optionnel (?.) pour ne pas avoir d'erreur si aucun interet ou like existe
             const formattedProfile = {
                 id: profile.id,
                 pseudo: profile.pseudo,
-                pictures: profile.Pictures[0].first,
+                pictures: profile.Pictures[0].url,
                 age: profile.age,
                 looking_for: profile.looking_for,
                 city: profile.city,
                 description: profile.description,
-                interests: interest,
-                like: likeStatus?.like || null
+                like: likeStatus?.like || null,
+                interest: interest
             }
             profile ?
                 res.status(200).json(formattedProfile)

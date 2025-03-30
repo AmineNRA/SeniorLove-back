@@ -97,50 +97,77 @@ export const matchController = {
                 `)
             });
 
-            // Si un match existe cela veut dire que l'utilisateur a déjà été liké.
+            // Si un match existe.
             if (existingMatch) {
-
-                //Donc j'update le match pour mettre la clé like avec la valeur like
-                await Match_Profile.update(
-                    { like: 'like' },
-                    {
-                        where: {
-                            match_id: existingMatch.id,
-                            profile_id: req.user.id
+                // je vais chercher le like de l'autre
+                const like = await Match_Profile.findOne({
+                    where: {
+                        match_id: existingMatch.id,
+                        profile_id: { [Op.ne]: req.user.id },
+                    },
+                });
+                // si l'autre n'a pas liké
+                if (like.like !== "like") {
+                    //Donc j'update le like de notre utilisateur pour mettre la clé like avec la valeur like
+                    await Match_Profile.update(
+                        { like: 'like' },
+                        {
+                            where: {
+                                match_id: existingMatch.id,
+                                profile_id: req.user.id
+                            }
                         }
-                    }
-                );
-                // Je modifie aussi le match avec comme statue accepté
-                await existingMatch.update({ status: 'accepted' });
+                    );
 
-                return res.status(200).json({
-                    message: "C'est un match !",
-                    match: existingMatch.matched_profiles.map(profile => ({
-                        id: profile.id,
-                        pseudo: profile.pseudo,
-                        profile_image: profile.profile_image
-                    }))
+                    return res.status(201).json({ success: true })
+                }
+                //Sinon cela veut dire qu'il y a match
+                else {
+                    // Donc j'update aussi le like de notre utilisateur
+                    await Match_Profile.update(
+                        { like: 'like' },
+                        {
+                            where: {
+                                match_id: existingMatch.id,
+                                profile_id: req.user.id
+                            }
+                        }
+                    );
+                    // Et je passe le match en accepté
+                    await existingMatch.update({ status: 'accepted' });
+
+                    // je return que c'est un match
+
+                    return res.status(200).json({
+                        message: "C'est un match !",
+                        match: existingMatch.matched_profiles.map(profile => ({
+                            id: profile.id,
+                            pseudo: profile.pseudo,
+                            profile_image: profile.profile_image
+                        }))
+                    });
+                }
+            }
+            // Sinon, créer un nouveau match
+            else {
+                const newMatch = await Match.create();
+                await Promise.all([
+                    Match_Profile.create({
+                        match_id: newMatch.id,
+                        profile_id: req.user.id,
+                        like: 'like'
+                    }),
+                    Match_Profile.create({
+                        match_id: newMatch.id,
+                        profile_id: profile_id,
+                        like: 'pending'
+                    })
+                ]);
+
+                return res.status(201).json({
+                    success: true
                 });
             }
-
-            // 2. Sinon, créer un nouveau match
-            const newMatch = await Match.create();
-            await Promise.all([
-                Match_Profile.create({
-                    match_id: newMatch.id,
-                    profile_id: req.user.id,
-                    like: 'like'
-                }),
-                Match_Profile.create({
-                    match_id: newMatch.id,
-                    profile_id: profile_id,
-                    like: 'pending'
-                })
-            ]);
-
-            res.status(201).json({
-                message: "Like enregistré"
-            });
 
         } catch (error) {
             console.log(error.message);
@@ -172,7 +199,7 @@ export const matchController = {
                     existingMatch.update({ status: 'rejected' })
                 ]);
 
-                res.status(201).json({ message: 'le match est bien supprimé !' });
+                res.status(201).json({ sucess: 'true' });
             } else {
                 res.status(404).json({ message: 'Aucun match à supprimer' });
             }
